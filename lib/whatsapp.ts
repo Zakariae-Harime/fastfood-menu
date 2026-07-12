@@ -11,12 +11,22 @@ export function buildOrderMessage(
   for (const line of lines) {
     parts.push(`▪ ${line.quantity}× ${line.item.name_darija}`)
     if (line.bread) parts.push(`   الخبز: ${line.bread.name_darija}`)
-    if (line.removed.length > 0) {
-      parts.push(`   بلا: ${line.removed.map((i) => i.name_darija).join('، ')}`)
+
+    // Removed ingredients ("بلا …") and added extra portions ("… ×2").
+    const removed = line.ingredients.filter((c) => c.quantity === 0)
+    const added = line.ingredients.filter((c) => c.quantity > 1)
+    if (removed.length > 0) {
+      parts.push(`   بلا: ${removed.map((c) => c.ingredient.name_darija).join('، ')}`)
     }
+    if (added.length > 0) {
+      parts.push(
+        `   زيادة: ${added.map((c) => `${c.ingredient.name_darija} ×${c.quantity}`).join('، ')}`,
+      )
+    }
+
     if (line.extras.length > 0) {
       parts.push(
-        `   الزيادة: ${line.extras.map((e) => `${e.name_darija} (+${e.price} درهم)`).join('، ')}`,
+        `   إكسترا: ${line.extras.map((e) => `${e.name_darija} (+${e.price} درهم)`).join('، ')}`,
       )
     }
     parts.push(`   الثمن: ${lineSubtotal(line)} درهم`)

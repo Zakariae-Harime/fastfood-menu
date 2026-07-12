@@ -1,7 +1,15 @@
 export type MenuCategory = 'Sandwichs' | 'Boissons' | 'Extras'
 
+// A bread choice or included ingredient, carrying both the French label
+// shown in the UI and the Darija label used in the WhatsApp order message.
+export interface Ingredient {
+  name: string
+  name_darija: string
+}
+
 export interface MenuExtra {
   name: string
+  name_darija: string
   price: number
 }
 
@@ -11,8 +19,8 @@ export interface MenuItem {
   name_darija: string
   category: MenuCategory
   base_price: number
-  bread_options: string[]
-  included: string[]
+  bread_options: Ingredient[]
+  included: Ingredient[]
   extras: MenuExtra[]
   available: boolean
   featured?: boolean
@@ -22,8 +30,10 @@ export interface MenuItem {
 export interface CartLine {
   uid: string
   item: MenuItem
-  bread: string | null
+  bread: Ingredient | null
   extras: MenuExtra[]
+  // Included ingredients the customer chose to remove ("sans oignons").
+  removed: Ingredient[]
   quantity: number
 }
 

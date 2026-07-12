@@ -219,6 +219,12 @@ export default function HomePage() {
         <p className="mt-1 text-xs text-muted-foreground">
           {SHOP_INFO.address} · {SHOP_INFO.phoneDisplay}
         </p>
+        <Link
+          href="/qr"
+          className="mt-3 inline-block text-xs text-muted-foreground underline-offset-4 hover:underline"
+        >
+          QR codes à imprimer
+        </Link>
       </footer>
     </main>
   )

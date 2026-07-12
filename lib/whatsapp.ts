@@ -2,6 +2,32 @@ import { WHATSAPP_NUMBER } from '@/lib/config'
 import type { CartLine } from '@/lib/types'
 import { lineSubtotal } from '@/lib/types'
 
+// Traductions darija (arabe marocain) des pains et des extras.
+// La donnée du menu reste en français ; on traduit uniquement au moment
+// d'écrire la commande WhatsApp. Toute clé absente retombe sur le texte d'origine.
+const DARIJA: Record<string, string> = {
+  // Pains
+  Baguette: 'باكيط',
+  'Pain rond': 'خبز مدور',
+  Panini: 'بانيني',
+  // Extras
+  Fromage: 'فرماج',
+  'Viande hachée': 'لحم مفروم',
+  'Double viande': 'لحم مضاعف',
+  'Double kefta': 'كفتة مضاعفة',
+  Oeuf: 'بيضة',
+  'Oeuf supplémentaire': 'بيضة زايدة',
+  Champignons: 'شامبينيون',
+  'Frites dedans': 'فريط داخل',
+  'Sauce harissa': 'هريسة',
+  'Sauce algérienne': 'صوص جزائرية',
+  'Sauce barbecue': 'صوص باربكيو',
+}
+
+function toDarija(label: string): string {
+  return DARIJA[label] ?? label
+}
+
 // Le récapitulatif de commande est rédigé en darija (arabe marocain),
 // la langue parlée par les clients du snack.
 export function buildOrderMessage(
@@ -13,10 +39,10 @@ export function buildOrderMessage(
 
   for (const line of lines) {
     parts.push(`▪ ${line.quantity}× ${line.item.name_darija}`)
-    if (line.bread) parts.push(`   الخبز: ${line.bread}`)
+    if (line.bread) parts.push(`   الخبز: ${toDarija(line.bread)}`)
     if (line.extras.length > 0) {
       parts.push(
-        `   الزيادة: ${line.extras.map((e) => `${e.name} (+${e.price} درهم)`).join('، ')}`,
+        `   الزيادة: ${line.extras.map((e) => `${toDarija(e.name)} (+${e.price} درهم)`).join('، ')}`,
       )
     }
     parts.push(`   الثمن: ${lineSubtotal(line)} درهم`)

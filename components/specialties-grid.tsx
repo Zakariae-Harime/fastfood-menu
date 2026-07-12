@@ -42,7 +42,7 @@ export function SpecialtiesGrid() {
                 </span>
               </div>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                {item.included.join(' · ')}
+                {item.included.map((i) => i.name).join(' · ')}
               </p>
             </div>
           </article>

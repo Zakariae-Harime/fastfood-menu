@@ -2,7 +2,7 @@
 
 import useSWR from 'swr'
 import { LOCAL_MENU_URL, REMOTE_MENU_URL } from '@/lib/config'
-import type { MenuExtra, MenuItem } from '@/lib/types'
+import type { Ingredient, MenuExtra, MenuItem } from '@/lib/types'
 
 // A Google Sheet published via opensheet.elk.sh returns every cell as a
 // plain string (no arrays, no booleans, no numbers). These helpers turn a
@@ -20,16 +20,37 @@ function toNumber(v: unknown): number {
   return Number.isFinite(n) ? n : 0
 }
 
-// Comma-separated in the sheet, e.g. "Baguette, Pain rond, Panini"
-function toList(v: unknown): string[] {
-  if (Array.isArray(v)) return v as string[]
+// Bread options and included ingredients can arrive as bilingual objects
+// (local menu.json) or as a comma-separated French string (published sheet,
+// which has no Darija column — there we mirror the French label).
+function toIngredients(v: unknown): Ingredient[] {
+  if (Array.isArray(v)) {
+    return v.map((el) =>
+      typeof el === 'string'
+        ? { name: el, name_darija: el }
+        : {
+            name: String(el?.name ?? ''),
+            name_darija: String(el?.name_darija ?? el?.name ?? ''),
+          },
+    )
+  }
   if (!v) return []
-  return String(v).split(',').map((s) => s.trim()).filter(Boolean)
+  return String(v)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => ({ name: s, name_darija: s }))
 }
 
-// "Fromage:5;Oeuf:3" in the sheet — name:price pairs separated by ;
+// Bilingual objects locally, or "Fromage:5;Oeuf:3" name:price pairs in a sheet.
 function toExtras(v: unknown): MenuExtra[] {
-  if (Array.isArray(v)) return v as MenuExtra[]
+  if (Array.isArray(v)) {
+    return v.map((el) => ({
+      name: String(el?.name ?? ''),
+      name_darija: String(el?.name_darija ?? el?.name ?? ''),
+      price: toNumber(el?.price),
+    }))
+  }
   if (!v) return []
   return String(v)
     .split(';')
@@ -37,7 +58,8 @@ function toExtras(v: unknown): MenuExtra[] {
     .filter(Boolean)
     .map((pair) => {
       const [name, price] = pair.split(':')
-      return { name: (name ?? '').trim(), price: toNumber(price) }
+      const label = (name ?? '').trim()
+      return { name: label, name_darija: label, price: toNumber(price) }
     })
 }
 
@@ -48,8 +70,8 @@ function normalize(raw: any): MenuItem {
     name_darija: String(raw.name_darija ?? ''),
     category: raw.category,
     base_price: toNumber(raw.base_price),
-    bread_options: toList(raw.bread_options),
-    included: toList(raw.included),
+    bread_options: toIngredients(raw.bread_options),
+    included: toIngredients(raw.included),
     extras: toExtras(raw.extras),
     available: toBool(raw.available),
     featured: toBool(raw.featured),

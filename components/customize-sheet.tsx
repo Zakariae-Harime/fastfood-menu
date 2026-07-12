@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
-import type { Ingredient, MenuExtra, MenuItem } from '@/lib/types'
+import type { Ingredient, IngredientChoice, MenuExtra, MenuItem } from '@/lib/types'
 import { formatPrice } from '@/lib/types'
 
 interface CustomizeSheetProps {
@@ -15,22 +15,23 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
   const { addLine } = useCart()
   const [bread, setBread] = useState<Ingredient | null>(null)
   const [selectedExtras, setSelectedExtras] = useState<MenuExtra[]>([])
-  const [removed, setRemoved] = useState<Ingredient[]>([])
+  // Chosen quantity per included ingredient, keyed by name. Default is 1.
+  const [ingredientQty, setIngredientQty] = useState<Record<string, number>>({})
   const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     if (item) {
       setBread(item.bread_options[0] ?? null)
       setSelectedExtras([])
-      setRemoved([])
+      setIngredientQty(Object.fromEntries(item.included.map((i) => [i.name, 1])))
       setQuantity(1)
     }
   }, [item])
 
   if (!item) return null
 
-  // Included ingredients are only individually removable on composed items
-  // (sandwiches). Drinks/sides list a single descriptive line, not toggles.
+  // Included ingredients are only adjustable on composed items (sandwiches).
+  // Drinks/sides list a single descriptive line, not controllable ingredients.
   const showIngredients = item.bread_options.length > 0 && item.included.length > 0
 
   const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0)
@@ -44,16 +45,16 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
     )
   }
 
-  const toggleIngredient = (ingredient: Ingredient) => {
-    setRemoved((prev) =>
-      prev.some((i) => i.name === ingredient.name)
-        ? prev.filter((i) => i.name !== ingredient.name)
-        : [...prev, ingredient],
-    )
+  const setIngredient = (name: string, next: number) => {
+    setIngredientQty((prev) => ({ ...prev, [name]: Math.max(0, Math.min(5, next)) }))
   }
 
   const handleAdd = () => {
-    addLine(item, bread, selectedExtras, removed, quantity)
+    // Only send ingredients whose quantity differs from the default of 1.
+    const ingredients: IngredientChoice[] = item.included
+      .map((ingredient) => ({ ingredient, quantity: ingredientQty[ingredient.name] ?? 1 }))
+      .filter((choice) => choice.quantity !== 1)
+    addLine(item, bread, selectedExtras, ingredients, quantity)
     onClose()
   }
 
@@ -121,42 +122,61 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
             </fieldset>
           )}
 
-          {/* Included ingredients — toggle off to remove */}
+          {/* Included ingredients — adjust quantity, 0 to remove */}
           {showIngredients && (
             <fieldset className="mb-6">
               <legend className="mb-1 font-display text-base font-bold text-card-foreground">
                 Ingrédients
               </legend>
               <p className="mb-3 text-sm text-muted-foreground">
-                Décochez ce que vous ne voulez pas.
+                Ajoutez, réduisez ou retirez (0) ce que vous voulez.
               </p>
               <div className="flex flex-col gap-2">
                 {item.included.map((ingredient) => {
-                  const kept = !removed.some((i) => i.name === ingredient.name)
+                  const qty = ingredientQty[ingredient.name] ?? 1
+                  const removed = qty === 0
                   return (
-                    <label
+                    <div
                       key={ingredient.name}
-                      className={`flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-2xl border-2 px-4 transition-colors ${
-                        kept ? 'border-primary bg-accent' : 'border-border bg-card opacity-60'
+                      className={`flex min-h-12 items-center justify-between gap-3 rounded-2xl border-2 px-4 transition-colors ${
+                        removed ? 'border-border bg-card opacity-60' : 'border-primary bg-accent'
                       }`}
                     >
-                      <span className="flex items-center gap-3">
-                        <input
-                          type="checkbox"
-                          checked={kept}
-                          onChange={() => toggleIngredient(ingredient)}
-                          className="size-5 accent-[var(--primary)]"
-                        />
+                      <span className="flex min-w-0 flex-col">
                         <span
-                          className={`font-medium text-card-foreground ${kept ? '' : 'line-through'}`}
+                          className={`font-medium text-card-foreground ${removed ? 'line-through' : ''}`}
                         >
                           {ingredient.name}
+                          {qty > 1 && <span className="ml-1 font-bold">×{qty}</span>}
+                        </span>
+                        <span className="text-xs text-muted-foreground" dir="rtl" lang="ar">
+                          {ingredient.name_darija}
                         </span>
                       </span>
-                      <span className="text-sm text-muted-foreground" dir="rtl" lang="ar">
-                        {ingredient.name_darija}
-                      </span>
-                    </label>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setIngredient(ingredient.name, qty - 1)}
+                          className="flex size-9 items-center justify-center rounded-full bg-muted text-foreground disabled:opacity-40"
+                          disabled={qty <= 0}
+                          aria-label={`Réduire ${ingredient.name}`}
+                        >
+                          <Minus className="size-4" aria-hidden="true" />
+                        </button>
+                        <span className="w-5 text-center font-bold" aria-live="polite">
+                          {qty}
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setIngredient(ingredient.name, qty + 1)}
+                          className="flex size-9 items-center justify-center rounded-full bg-muted text-foreground disabled:opacity-40"
+                          disabled={qty >= 5}
+                          aria-label={`Ajouter ${ingredient.name}`}
+                        >
+                          <Plus className="size-4" aria-hidden="true" />
+                        </button>
+                      </div>
+                    </div>
                   )
                 })}
               </div>

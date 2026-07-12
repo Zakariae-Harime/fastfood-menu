@@ -30,6 +30,15 @@ export function HeroVideo() {
 
   return (
     <video
+      ref={(el) => {
+        // React does not always reflect the `muted` prop onto the DOM
+        // attribute; set it imperatively to guarantee no audio plays.
+        if (el) {
+          el.muted = true
+          el.defaultMuted = true
+          el.volume = 0
+        }
+      }}
       src="/videos/hero.mp4"
       poster="/images/hero.png"
       autoPlay

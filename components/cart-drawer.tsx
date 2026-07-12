@@ -68,7 +68,10 @@ export function CartDrawer() {
                 <p className="py-8 text-center text-muted-foreground">Votre panier est vide.</p>
               ) : (
                 <ul className="flex flex-col gap-4">
-                  {lines.map((line) => (
+                  {lines.map((line) => {
+                    const removed = line.ingredients.filter((c) => c.quantity === 0)
+                    const added = line.ingredients.filter((c) => c.quantity > 1)
+                    return (
                     <li key={line.uid} className="rounded-2xl border border-border p-3">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
@@ -76,9 +79,14 @@ export function CartDrawer() {
                           {line.bread && (
                             <p className="text-sm text-muted-foreground">Pain: {line.bread.name}</p>
                           )}
-                          {line.removed.length > 0 && (
+                          {removed.length > 0 && (
                             <p className="text-sm text-muted-foreground">
-                              Sans: {line.removed.map((i) => i.name).join(', ')}
+                              Sans: {removed.map((c) => c.ingredient.name).join(', ')}
+                            </p>
+                          )}
+                          {added.length > 0 && (
+                            <p className="text-sm text-muted-foreground">
+                              Extra: {added.map((c) => `${c.ingredient.name} ×${c.quantity}`).join(', ')}
                             </p>
                           )}
                           {line.extras.length > 0 && (
@@ -124,7 +132,8 @@ export function CartDrawer() {
                         </span>
                       </div>
                     </li>
-                  ))}
+                    )
+                  })}
                 </ul>
               )}
             </div>

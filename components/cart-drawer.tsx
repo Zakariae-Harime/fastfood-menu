@@ -74,7 +74,12 @@ export function CartDrawer() {
                         <div className="min-w-0">
                           <p className="font-semibold text-card-foreground">{line.item.name_fr}</p>
                           {line.bread && (
-                            <p className="text-sm text-muted-foreground">Pain: {line.bread}</p>
+                            <p className="text-sm text-muted-foreground">Pain: {line.bread.name}</p>
+                          )}
+                          {line.removed.length > 0 && (
+                            <p className="text-sm text-muted-foreground">
+                              Sans: {line.removed.map((i) => i.name).join(', ')}
+                            </p>
                           )}
                           {line.extras.length > 0 && (
                             <p className="text-sm text-muted-foreground">

@@ -1,16 +1,16 @@
 'use client'
 
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
-import type { CartLine, Ingredient, MenuExtra, MenuItem } from '@/lib/types'
+import type { CartLine, IngredientChoice, MenuExtra, MenuItem } from '@/lib/types'
 import { lineSubtotal } from '@/lib/types'
 
 interface CartContextValue {
   lines: CartLine[]
   addLine: (
     item: MenuItem,
-    bread: Ingredient | null,
+    bread: MenuItem['bread_options'][number] | null,
     extras: MenuExtra[],
-    removed: Ingredient[],
+    ingredients: IngredientChoice[],
     quantity: number,
   ) => void
   updateQuantity: (uid: string, quantity: number) => void
@@ -25,14 +25,8 @@ const CartContext = createContext<CartContextValue | null>(null)
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [lines, setLines] = useState<CartLine[]>([])
 
-  const addLine = useCallback(
-    (
-      item: MenuItem,
-      bread: Ingredient | null,
-      extras: MenuExtra[],
-      removed: Ingredient[],
-      quantity: number,
-    ) => {
+  const addLine = useCallback<CartContextValue['addLine']>(
+    (item, bread, extras, ingredients, quantity) => {
       setLines((prev) => [
         ...prev,
         {
@@ -40,7 +34,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           item,
           bread,
           extras,
-          removed,
+          ingredients,
           quantity,
         },
       ])

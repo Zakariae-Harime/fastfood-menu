@@ -27,18 +27,12 @@ export default function QrPage() {
             QR Codes
           </h1>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground text-pretty">
-            Scannez ou imprimez ces QR codes pour vos tables, vitrines et flyers. Chaque code
-            redirige directement vers le site ou le menu.
+            Scannez ou imprimez ce QR code pour vos tables, vitrines et flyers. Il redirige
+            directement vers le menu.
           </p>
         </div>
 
-        <div className="flex flex-col gap-6 sm:grid sm:grid-cols-2">
-          <QrCard
-            title="Site web"
-            description="Redirige vers la page d'accueil de Snack Maestro."
-            url={SITE_URL}
-            fileName="snack-maestro-site-qr.png"
-          />
+        <div className="mx-auto w-full max-w-sm">
           <QrCard
             title="Menu"
             description="Redirige directement vers le menu complet."

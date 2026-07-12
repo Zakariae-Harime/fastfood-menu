@@ -13,6 +13,13 @@ export interface MenuExtra {
   price: number
 }
 
+// How much of an included ingredient the customer wants:
+// 0 = removed ("sans"), 1 = default, 2+ = extra portions.
+export interface IngredientChoice {
+  ingredient: Ingredient
+  quantity: number
+}
+
 export interface MenuItem {
   id: string
   name_fr: string
@@ -32,8 +39,9 @@ export interface CartLine {
   item: MenuItem
   bread: Ingredient | null
   extras: MenuExtra[]
-  // Included ingredients the customer chose to remove ("sans oignons").
-  removed: Ingredient[]
+  // Included ingredients whose quantity differs from the default of 1
+  // (removed or added extra portions). Untouched ingredients are omitted.
+  ingredients: IngredientChoice[]
   quantity: number
 }
 

@@ -47,6 +47,7 @@ export default function HomePage() {
     <main className="min-h-dvh">
       {/* Hero */}
       <section className="relative flex min-h-dvh flex-col justify-end">
+        {/* suppressHydrationWarning: browser extensions (e.g. Ultrawidify) mutate video elements before React hydrates */}
         <video
           src="/videos/hero.mp4"
           poster="/images/hero.png"
@@ -54,6 +55,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
+          suppressHydrationWarning
           className="absolute inset-0 h-full w-full object-cover"
           aria-label="Chef de Snack Maestro préparant un bocadillo derrière le comptoir"
         />

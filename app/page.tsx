@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Clock, Flame, Leaf, MapPin, Phone, UtensilsCrossed } from 'lucide-react'
+import { HeroVideo } from '@/components/hero-video'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SHOP_INFO, WHATSAPP_NUMBER } from '@/lib/config'
 
@@ -47,18 +48,7 @@ export default function HomePage() {
     <main className="min-h-dvh">
       {/* Hero */}
       <section className="relative flex min-h-dvh flex-col justify-end">
-        {/* suppressHydrationWarning: browser extensions (e.g. Ultrawidify) mutate video elements before React hydrates */}
-        <video
-          src="/videos/hero.mp4"
-          poster="/images/hero.png"
-          autoPlay
-          muted
-          loop
-          playsInline
-          suppressHydrationWarning
-          className="absolute inset-0 h-full w-full object-cover"
-          aria-label="Chef de Snack Maestro préparant un bocadillo derrière le comptoir"
-        />
+        <HeroVideo />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" aria-hidden="true" />
 
         <div className="relative z-10 flex flex-col items-center gap-6 px-6 pb-12 pt-32 text-center">

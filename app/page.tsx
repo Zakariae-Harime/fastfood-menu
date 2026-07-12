@@ -2,9 +2,13 @@ import Link from 'next/link'
 import { Clock, Flame, Leaf, MapPin, Phone, UtensilsCrossed } from 'lucide-react'
 import { HeroVideo } from '@/components/hero-video'
 import { OpenStatusBadge } from '@/components/open-status-badge'
+import { QrCard } from '@/components/qr-card'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SpecialtiesGrid } from '@/components/specialties-grid'
 import { SHOP_INFO, WHATSAPP_NUMBER } from '@/lib/config'
+
+// URL publique du site — sert de cible au QR code du menu.
+const SITE_URL = 'https://snack-maestro.vercel.app'
 
 const VALUES = [
   {
@@ -172,6 +176,35 @@ export default function HomePage() {
                 Commander sur WhatsApp
               </a>
             </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* QR code du menu */}
+      <section className="bg-card px-6 py-16" aria-labelledby="qr-title">
+        <div className="mx-auto max-w-md">
+          <ScrollReveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              Scannez &amp; commandez
+            </p>
+            <h2
+              id="qr-title"
+              className="mt-2 text-center font-display text-3xl font-black uppercase tracking-tight text-card-foreground text-balance sm:text-4xl"
+            >
+              Le menu dans votre poche
+            </h2>
+            <p className="mx-auto mt-3 max-w-sm text-center text-sm leading-relaxed text-muted-foreground text-pretty">
+              Pointez la caméra de votre téléphone sur le code pour ouvrir le menu et commander sur WhatsApp.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={120} className="mt-8">
+            <QrCard
+              title="Menu Snack Maestro"
+              description="Redirige directement vers le menu complet."
+              url={`${SITE_URL}/menu`}
+              fileName="snack-maestro-menu-qr.png"
+            />
           </ScrollReveal>
         </div>
       </section>

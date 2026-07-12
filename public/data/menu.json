@@ -1,0 +1,157 @@
+[
+  {
+    "id": "bocadillo-mixte",
+    "name_fr": "Bocadillo Mixte",
+    "name_darija": "بوكاديو مخلط",
+    "category": "Sandwichs",
+    "base_price": 30,
+    "bread_options": ["Baguette", "Pain rond", "Panini"],
+    "included": ["Thon", "Oeuf", "Frites", "Olives", "Salade", "Mayonnaise"],
+    "extras": [
+      { "name": "Fromage", "price": 5 },
+      { "name": "Viande hachée", "price": 10 },
+      { "name": "Oeuf supplémentaire", "price": 3 },
+      { "name": "Sauce harissa", "price": 2 }
+    ],
+    "available": true,
+    "image": "/images/menu/bocadillo-mixte.png"
+  },
+  {
+    "id": "bocadillo-poulet",
+    "name_fr": "Bocadillo Poulet",
+    "name_darija": "بوكاديو الدجاج",
+    "category": "Sandwichs",
+    "base_price": 28,
+    "bread_options": ["Baguette", "Pain rond", "Panini"],
+    "included": ["Poulet mariné grillé", "Frites", "Salade", "Sauce maison"],
+    "extras": [
+      { "name": "Fromage", "price": 5 },
+      { "name": "Oeuf", "price": 3 },
+      { "name": "Champignons", "price": 5 },
+      { "name": "Sauce algérienne", "price": 3 }
+    ],
+    "available": true,
+    "image": "/images/menu/bocadillo-poulet.png"
+  },
+  {
+    "id": "bocadillo-kefta",
+    "name_fr": "Bocadillo Kefta",
+    "name_darija": "بوكاديو الكفتة",
+    "category": "Sandwichs",
+    "base_price": 32,
+    "bread_options": ["Baguette", "Pain rond"],
+    "included": ["Kefta grillée", "Oignons", "Tomates", "Harissa", "Frites"],
+    "extras": [
+      { "name": "Fromage", "price": 5 },
+      { "name": "Oeuf", "price": 3 },
+      { "name": "Double kefta", "price": 12 }
+    ],
+    "available": true,
+    "image": "/images/menu/bocadillo-kefta.png"
+  },
+  {
+    "id": "bocadillo-viande-hachee",
+    "name_fr": "Bocadillo Viande Hachée",
+    "name_darija": "بوكاديو اللحم المفروم",
+    "category": "Sandwichs",
+    "base_price": 35,
+    "bread_options": ["Baguette", "Pain rond", "Panini"],
+    "included": ["Viande hachée", "Fromage fondu", "Frites", "Salade"],
+    "extras": [
+      { "name": "Double viande", "price": 12 },
+      { "name": "Oeuf", "price": 3 },
+      { "name": "Champignons", "price": 5 },
+      { "name": "Sauce barbecue", "price": 3 }
+    ],
+    "available": true,
+    "image": "/images/menu/bocadillo-viande-hachee.png"
+  },
+  {
+    "id": "bocadillo-thon",
+    "name_fr": "Bocadillo Thon-Fromage",
+    "name_darija": "بوكاديو التونة",
+    "category": "Sandwichs",
+    "base_price": 25,
+    "bread_options": ["Baguette", "Pain rond"],
+    "included": ["Thon", "Fromage", "Olives", "Maïs", "Mayonnaise"],
+    "extras": [
+      { "name": "Oeuf", "price": 3 },
+      { "name": "Frites dedans", "price": 4 },
+      { "name": "Sauce harissa", "price": 2 }
+    ],
+    "available": true,
+    "image": "/images/menu/bocadillo-thon.png"
+  },
+  {
+    "id": "soda",
+    "name_fr": "Soda (canette)",
+    "name_darija": "مونادة",
+    "category": "Boissons",
+    "base_price": 8,
+    "bread_options": [],
+    "included": ["Coca, Fanta, Sprite ou Hawai — 33cl bien frais"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/soda.png"
+  },
+  {
+    "id": "jus-avocat",
+    "name_fr": "Jus d'Avocat",
+    "name_darija": "عصير الأفوكادو",
+    "category": "Boissons",
+    "base_price": 15,
+    "bread_options": [],
+    "included": ["Avocat frais, lait, amandes concassées"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/jus-avocat.png"
+  },
+  {
+    "id": "the-menthe",
+    "name_fr": "Thé à la Menthe",
+    "name_darija": "أتاي بالنعناع",
+    "category": "Boissons",
+    "base_price": 10,
+    "bread_options": [],
+    "included": ["Thé vert, menthe fraîche du jour"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/the-menthe.png"
+  },
+  {
+    "id": "frites",
+    "name_fr": "Portion de Frites",
+    "name_darija": "فريط",
+    "category": "Extras",
+    "base_price": 10,
+    "bread_options": [],
+    "included": ["Frites maison croustillantes, sel"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/frites.png"
+  },
+  {
+    "id": "tenders",
+    "name_fr": "Tenders de Poulet (x4)",
+    "name_darija": "تندرز الدجاج",
+    "category": "Extras",
+    "base_price": 20,
+    "bread_options": [],
+    "included": ["4 tenders croustillants, sauce à l'ail"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/tenders.png"
+  },
+  {
+    "id": "salade",
+    "name_fr": "Salade Marocaine",
+    "name_darija": "شلاضة مغربية",
+    "category": "Extras",
+    "base_price": 8,
+    "bread_options": [],
+    "included": ["Tomates, concombres, oignons, olives, huile d'olive"],
+    "extras": [],
+    "available": true,
+    "image": "/images/menu/salade.png"
+  }
+]

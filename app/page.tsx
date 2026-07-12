@@ -1,29 +1,10 @@
 import Link from 'next/link'
 import { Clock, Flame, Leaf, MapPin, Phone, UtensilsCrossed } from 'lucide-react'
 import { HeroVideo } from '@/components/hero-video'
+import { OpenStatusBadge } from '@/components/open-status-badge'
 import { ScrollReveal } from '@/components/scroll-reveal'
+import { SpecialtiesGrid } from '@/components/specialties-grid'
 import { SHOP_INFO, WHATSAPP_NUMBER } from '@/lib/config'
-
-const SPECIALTIES = [
-  {
-    name: 'Bocadillo Mixte',
-    description: 'Thon, oeuf, frites, olives — le classique de Tanger.',
-    price: '30 DH',
-    image: '/images/menu/bocadillo-mixte.png',
-  },
-  {
-    name: 'Bocadillo Kefta',
-    description: 'Kefta grillée à la minute, oignons et harissa.',
-    price: '32 DH',
-    image: '/images/menu/bocadillo-kefta.png',
-  },
-  {
-    name: 'Bocadillo Poulet',
-    description: 'Poulet mariné grillé, sauce maison.',
-    price: '28 DH',
-    image: '/images/menu/bocadillo-poulet.png',
-  },
-]
 
 const VALUES = [
   {
@@ -99,31 +80,7 @@ export default function HomePage() {
             </h2>
           </ScrollReveal>
 
-          <div className="mt-10 flex flex-col gap-5 sm:grid sm:grid-cols-3">
-            {SPECIALTIES.map((item, index) => (
-              <ScrollReveal key={item.name} delay={index * 120}>
-                <article className="group overflow-hidden rounded-3xl bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="h-44 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="flex flex-col gap-1.5 p-4">
-                    <div className="flex items-start justify-between gap-2">
-                      <h3 className="font-display text-lg font-bold leading-tight text-card-foreground">
-                        {item.name}
-                      </h3>
-                      <span className="shrink-0 rounded-full bg-accent px-3 py-1 font-display text-sm font-bold text-accent-foreground">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
-          </div>
+          <SpecialtiesGrid />
 
           <ScrollReveal delay={150} className="mt-8 text-center">
             <Link
@@ -185,10 +142,15 @@ export default function HomePage() {
                 className="flex items-center gap-3 text-card-foreground underline-offset-4 hover:underline"
               >
                 <MapPin className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="text-sm">{SHOP_INFO.address}</span>
+                <span className="text-sm">
+                  {SHOP_INFO.address}
+                  {SHOP_INFO.landmark && (
+                    <span className="block text-xs text-muted-foreground">{SHOP_INFO.landmark}</span>
+                  )}
+                </span>
               </a>
               <a
-                href={`tel:+212661393826`}
+                href={`tel:+${WHATSAPP_NUMBER}`}
                 className="flex items-center gap-3 text-card-foreground underline-offset-4 hover:underline"
               >
                 <Phone className="size-5 shrink-0 text-primary" aria-hidden="true" />
@@ -197,6 +159,7 @@ export default function HomePage() {
               <div className="flex items-center gap-3 text-card-foreground">
                 <Clock className="size-5 shrink-0 text-primary" aria-hidden="true" />
                 <span className="text-sm">{SHOP_INFO.hours}</span>
+                <OpenStatusBadge />
               </div>
 
               <a

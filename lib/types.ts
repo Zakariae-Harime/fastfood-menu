@@ -15,6 +15,7 @@ export interface MenuItem {
   included: string[]
   extras: MenuExtra[]
   available: boolean
+  featured?: boolean
   image?: string
 }
 

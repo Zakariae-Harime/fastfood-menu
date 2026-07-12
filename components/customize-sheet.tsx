@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Minus, Plus, X } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
-import type { MenuExtra, MenuItem } from '@/lib/types'
+import type { Ingredient, MenuExtra, MenuItem } from '@/lib/types'
 import { formatPrice } from '@/lib/types'
 
 interface CustomizeSheetProps {
@@ -13,19 +13,25 @@ interface CustomizeSheetProps {
 
 export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
   const { addLine } = useCart()
-  const [bread, setBread] = useState<string | null>(null)
+  const [bread, setBread] = useState<Ingredient | null>(null)
   const [selectedExtras, setSelectedExtras] = useState<MenuExtra[]>([])
+  const [removed, setRemoved] = useState<Ingredient[]>([])
   const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     if (item) {
       setBread(item.bread_options[0] ?? null)
       setSelectedExtras([])
+      setRemoved([])
       setQuantity(1)
     }
   }, [item])
 
   if (!item) return null
+
+  // Included ingredients are only individually removable on composed items
+  // (sandwiches). Drinks/sides list a single descriptive line, not toggles.
+  const showIngredients = item.bread_options.length > 0 && item.included.length > 0
 
   const extrasTotal = selectedExtras.reduce((sum, e) => sum + e.price, 0)
   const subtotal = (item.base_price + extrasTotal) * quantity
@@ -38,8 +44,16 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
     )
   }
 
+  const toggleIngredient = (ingredient: Ingredient) => {
+    setRemoved((prev) =>
+      prev.some((i) => i.name === ingredient.name)
+        ? prev.filter((i) => i.name !== ingredient.name)
+        : [...prev, ingredient],
+    )
+  }
+
   const handleAdd = () => {
-    addLine(item, bread, selectedExtras, quantity)
+    addLine(item, bread, selectedExtras, removed, quantity)
     onClose()
   }
 
@@ -82,22 +96,69 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
               <div className="flex flex-col gap-2">
                 {item.bread_options.map((option) => (
                   <label
-                    key={option}
-                    className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-2xl border-2 px-4 transition-colors ${
-                      bread === option ? 'border-primary bg-accent' : 'border-border bg-card'
+                    key={option.name}
+                    className={`flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-2xl border-2 px-4 transition-colors ${
+                      bread?.name === option.name ? 'border-primary bg-accent' : 'border-border bg-card'
                     }`}
                   >
-                    <input
-                      type="radio"
-                      name="bread"
-                      value={option}
-                      checked={bread === option}
-                      onChange={() => setBread(option)}
-                      className="size-5 accent-[var(--primary)]"
-                    />
-                    <span className="font-medium text-card-foreground">{option}</span>
+                    <span className="flex items-center gap-3">
+                      <input
+                        type="radio"
+                        name="bread"
+                        value={option.name}
+                        checked={bread?.name === option.name}
+                        onChange={() => setBread(option)}
+                        className="size-5 accent-[var(--primary)]"
+                      />
+                      <span className="font-medium text-card-foreground">{option.name}</span>
+                    </span>
+                    <span className="text-sm text-muted-foreground" dir="rtl" lang="ar">
+                      {option.name_darija}
+                    </span>
                   </label>
                 ))}
+              </div>
+            </fieldset>
+          )}
+
+          {/* Included ingredients — toggle off to remove */}
+          {showIngredients && (
+            <fieldset className="mb-6">
+              <legend className="mb-1 font-display text-base font-bold text-card-foreground">
+                Ingrédients
+              </legend>
+              <p className="mb-3 text-sm text-muted-foreground">
+                Décochez ce que vous ne voulez pas.
+              </p>
+              <div className="flex flex-col gap-2">
+                {item.included.map((ingredient) => {
+                  const kept = !removed.some((i) => i.name === ingredient.name)
+                  return (
+                    <label
+                      key={ingredient.name}
+                      className={`flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-2xl border-2 px-4 transition-colors ${
+                        kept ? 'border-primary bg-accent' : 'border-border bg-card opacity-60'
+                      }`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <input
+                          type="checkbox"
+                          checked={kept}
+                          onChange={() => toggleIngredient(ingredient)}
+                          className="size-5 accent-[var(--primary)]"
+                        />
+                        <span
+                          className={`font-medium text-card-foreground ${kept ? '' : 'line-through'}`}
+                        >
+                          {ingredient.name}
+                        </span>
+                      </span>
+                      <span className="text-sm text-muted-foreground" dir="rtl" lang="ar">
+                        {ingredient.name_darija}
+                      </span>
+                    </label>
+                  )
+                })}
               </div>
             </fieldset>
           )}
@@ -125,7 +186,12 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
                           onChange={() => toggleExtra(extra)}
                           className="size-5 accent-[var(--primary)]"
                         />
-                        <span className="font-medium text-card-foreground">{extra.name}</span>
+                        <span className="flex flex-col">
+                          <span className="font-medium text-card-foreground">{extra.name}</span>
+                          <span className="text-xs text-muted-foreground" dir="rtl" lang="ar">
+                            {extra.name_darija}
+                          </span>
+                        </span>
                       </span>
                       <span className="text-sm font-semibold text-muted-foreground">
                         +{formatPrice(extra.price)}

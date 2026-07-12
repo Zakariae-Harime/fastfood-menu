@@ -5,13 +5,24 @@
     "name_darija": "بوكاديو مخلط",
     "category": "Sandwichs",
     "base_price": 30,
-    "bread_options": ["Baguette", "Pain rond", "Panini"],
-    "included": ["Thon", "Oeuf", "Frites", "Olives", "Salade", "Mayonnaise"],
+    "bread_options": [
+      { "name": "Baguette", "name_darija": "باكيط" },
+      { "name": "Pain rond", "name_darija": "خبز مدور" },
+      { "name": "Panini", "name_darija": "بانيني" }
+    ],
+    "included": [
+      { "name": "Thon", "name_darija": "طون" },
+      { "name": "Oeuf", "name_darija": "بيض" },
+      { "name": "Frites", "name_darija": "فريط" },
+      { "name": "Olives", "name_darija": "زيتون" },
+      { "name": "Salade", "name_darija": "شلاضة" },
+      { "name": "Mayonnaise", "name_darija": "مايونيز" }
+    ],
     "extras": [
-      { "name": "Fromage", "price": 5 },
-      { "name": "Viande hachée", "price": 10 },
-      { "name": "Oeuf supplémentaire", "price": 3 },
-      { "name": "Sauce harissa", "price": 2 }
+      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
+      { "name": "Viande hachée", "name_darija": "لحم مفروم", "price": 10 },
+      { "name": "Oeuf supplémentaire", "name_darija": "بيضة زايدة", "price": 3 },
+      { "name": "Sauce harissa", "name_darija": "هريسة", "price": 2 }
     ],
     "available": true,
     "featured": true,
@@ -23,13 +34,22 @@
     "name_darija": "بوكاديو الدجاج",
     "category": "Sandwichs",
     "base_price": 28,
-    "bread_options": ["Baguette", "Pain rond", "Panini"],
-    "included": ["Poulet mariné grillé", "Frites", "Salade", "Sauce maison"],
+    "bread_options": [
+      { "name": "Baguette", "name_darija": "باكيط" },
+      { "name": "Pain rond", "name_darija": "خبز مدور" },
+      { "name": "Panini", "name_darija": "بانيني" }
+    ],
+    "included": [
+      { "name": "Poulet mariné grillé", "name_darija": "دجاج مشوي متبل" },
+      { "name": "Frites", "name_darija": "فريط" },
+      { "name": "Salade", "name_darija": "شلاضة" },
+      { "name": "Sauce maison", "name_darija": "صوص ديال الدار" }
+    ],
     "extras": [
-      { "name": "Fromage", "price": 5 },
-      { "name": "Oeuf", "price": 3 },
-      { "name": "Champignons", "price": 5 },
-      { "name": "Sauce algérienne", "price": 3 }
+      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
+      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
+      { "name": "Champignons", "name_darija": "شامبينيون", "price": 5 },
+      { "name": "Sauce algérienne", "name_darija": "صوص جزائرية", "price": 3 }
     ],
     "available": true,
     "featured": true,
@@ -41,12 +61,21 @@
     "name_darija": "بوكاديو الكفتة",
     "category": "Sandwichs",
     "base_price": 32,
-    "bread_options": ["Baguette", "Pain rond"],
-    "included": ["Kefta grillée", "Oignons", "Tomates", "Harissa", "Frites"],
+    "bread_options": [
+      { "name": "Baguette", "name_darija": "باكيط" },
+      { "name": "Pain rond", "name_darija": "خبز مدور" }
+    ],
+    "included": [
+      { "name": "Kefta grillée", "name_darija": "كفتة مشوية" },
+      { "name": "Oignons", "name_darija": "بصلة" },
+      { "name": "Tomates", "name_darija": "طماطم" },
+      { "name": "Harissa", "name_darija": "هريسة" },
+      { "name": "Frites", "name_darija": "فريط" }
+    ],
     "extras": [
-      { "name": "Fromage", "price": 5 },
-      { "name": "Oeuf", "price": 3 },
-      { "name": "Double kefta", "price": 12 }
+      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
+      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
+      { "name": "Double kefta", "name_darija": "كفتة مضاعفة", "price": 12 }
     ],
     "available": true,
     "featured": true,
@@ -58,13 +87,22 @@
     "name_darija": "بوكاديو اللحم المفروم",
     "category": "Sandwichs",
     "base_price": 35,
-    "bread_options": ["Baguette", "Pain rond", "Panini"],
-    "included": ["Viande hachée", "Fromage fondu", "Frites", "Salade"],
+    "bread_options": [
+      { "name": "Baguette", "name_darija": "باكيط" },
+      { "name": "Pain rond", "name_darija": "خبز مدور" },
+      { "name": "Panini", "name_darija": "بانيني" }
+    ],
+    "included": [
+      { "name": "Viande hachée", "name_darija": "لحم مفروم" },
+      { "name": "Fromage fondu", "name_darija": "فرماج ذايب" },
+      { "name": "Frites", "name_darija": "فريط" },
+      { "name": "Salade", "name_darija": "شلاضة" }
+    ],
     "extras": [
-      { "name": "Double viande", "price": 12 },
-      { "name": "Oeuf", "price": 3 },
-      { "name": "Champignons", "price": 5 },
-      { "name": "Sauce barbecue", "price": 3 }
+      { "name": "Double viande", "name_darija": "لحم مضاعف", "price": 12 },
+      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
+      { "name": "Champignons", "name_darija": "شامبينيون", "price": 5 },
+      { "name": "Sauce barbecue", "name_darija": "صوص باربكيو", "price": 3 }
     ],
     "available": true,
     "image": "/images/menu/bocadillo-viande-hachee.png"
@@ -75,12 +113,21 @@
     "name_darija": "بوكاديو التونة",
     "category": "Sandwichs",
     "base_price": 25,
-    "bread_options": ["Baguette", "Pain rond"],
-    "included": ["Thon", "Fromage", "Olives", "Maïs", "Mayonnaise"],
+    "bread_options": [
+      { "name": "Baguette", "name_darija": "باكيط" },
+      { "name": "Pain rond", "name_darija": "خبز مدور" }
+    ],
+    "included": [
+      { "name": "Thon", "name_darija": "طون" },
+      { "name": "Fromage", "name_darija": "فرماج" },
+      { "name": "Olives", "name_darija": "زيتون" },
+      { "name": "Maïs", "name_darija": "درة" },
+      { "name": "Mayonnaise", "name_darija": "مايونيز" }
+    ],
     "extras": [
-      { "name": "Oeuf", "price": 3 },
-      { "name": "Frites dedans", "price": 4 },
-      { "name": "Sauce harissa", "price": 2 }
+      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
+      { "name": "Frites dedans", "name_darija": "فريط داخل", "price": 4 },
+      { "name": "Sauce harissa", "name_darija": "هريسة", "price": 2 }
     ],
     "available": true,
     "image": "/images/menu/bocadillo-thon.png"
@@ -92,7 +139,9 @@
     "category": "Boissons",
     "base_price": 8,
     "bread_options": [],
-    "included": ["Coca, Fanta, Sprite ou Hawai — 33cl bien frais"],
+    "included": [
+      { "name": "Coca, Fanta, Sprite ou Hawai — 33cl bien frais", "name_darija": "كوكا، فانطا، سبريت ولا هاواي — 33 سl بارد" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/soda.png"
@@ -104,7 +153,9 @@
     "category": "Boissons",
     "base_price": 15,
     "bread_options": [],
-    "included": ["Avocat frais, lait, amandes concassées"],
+    "included": [
+      { "name": "Avocat frais, lait, amandes concassées", "name_darija": "أفوكادو طري، حليب، لوز مطحون" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/jus-avocat.png"
@@ -116,7 +167,9 @@
     "category": "Boissons",
     "base_price": 10,
     "bread_options": [],
-    "included": ["Thé vert, menthe fraîche du jour"],
+    "included": [
+      { "name": "Thé vert, menthe fraîche du jour", "name_darija": "أتاي أخضر، نعناع طري ديال النهار" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/the-menthe.png"
@@ -128,7 +181,9 @@
     "category": "Extras",
     "base_price": 10,
     "bread_options": [],
-    "included": ["Frites maison croustillantes, sel"],
+    "included": [
+      { "name": "Frites maison croustillantes, sel", "name_darija": "فريط ديال الدار مقرمش، ملحة" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/frites.png"
@@ -140,7 +195,9 @@
     "category": "Extras",
     "base_price": 20,
     "bread_options": [],
-    "included": ["4 tenders croustillants, sauce à l'ail"],
+    "included": [
+      { "name": "4 tenders croustillants, sauce à l'ail", "name_darija": "4 تندرز مقرمش، صوص الثوم" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/tenders.png"
@@ -152,7 +209,9 @@
     "category": "Extras",
     "base_price": 8,
     "bread_options": [],
-    "included": ["Tomates, concombres, oignons, olives, huile d'olive"],
+    "included": [
+      { "name": "Tomates, concombres, oignons, olives, huile d'olive", "name_darija": "طماطم، خيار، بصلة، زيتون، زيت الزيتون" }
+    ],
     "extras": [],
     "available": true,
     "image": "/images/menu/salade.png"

@@ -38,7 +38,7 @@ export function MenuItemCard({ item, onCustomize }: MenuItemCardProps) {
         </div>
 
         <p className="text-sm leading-relaxed text-muted-foreground">
-          {item.included.join(' · ')}
+          {item.included.map((i) => i.name).join(' · ')}
         </p>
 
         <button

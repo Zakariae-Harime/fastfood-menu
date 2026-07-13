@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { ArrowUpRight, Clock, Flame, Leaf, MapPin, Navigation, Phone, UtensilsCrossed } from 'lucide-react'
+import { Clock, Flame, Leaf, Navigation, UtensilsCrossed } from 'lucide-react'
 import { HeroVideo } from '@/components/hero-video'
-import { OpenStatusBadge } from '@/components/open-status-badge'
+import { LocationMap } from '@/components/location-map'
 import { QrCard } from '@/components/qr-card'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SpecialtiesGrid } from '@/components/specialties-grid'
@@ -65,13 +65,11 @@ export default function HomePage() {
               Voir le menu
             </Link>
             <a
-              href={SHOP_INFO.directionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#itineraire"
               className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/40 bg-black/30 px-8 font-bold text-white backdrop-blur-sm hover:-translate-y-0.5 hover:border-white/70 hover:bg-black/50 active:scale-95"
             >
               <Navigation className="size-5" aria-hidden="true" />
-              Itinéraire
+              Voir l&apos;itinéraire
             </a>
           </div>
 
@@ -156,88 +154,8 @@ export default function HomePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
-            <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-card shadow-sm lg:grid lg:grid-cols-[1.15fr_0.85fr]">
-              <div className="relative min-h-72 overflow-hidden bg-muted lg:min-h-full">
-                <iframe
-                  src={SHOP_INFO.mapEmbedUrl}
-                  title="Carte Google Maps de Snack Maestro à Tanger"
-                  className="absolute inset-0 size-full border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-                <div className="pointer-events-none absolute left-4 top-4 rounded-full bg-card px-4 py-2 text-xs font-bold text-card-foreground shadow-md">
-                  Snack Maestro
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-6 p-6 sm:p-8">
-                <div className="flex flex-col gap-4">
-                  <a
-                    href={SHOP_INFO.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-start gap-3 text-card-foreground underline-offset-4 hover:underline"
-                  >
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent">
-                      <MapPin className="size-5 text-accent-foreground" aria-hidden="true" />
-                    </span>
-                    <span className="pt-1 text-sm leading-relaxed">
-                      <span className="block font-bold">Snack Maestro</span>
-                      {SHOP_INFO.address}
-                      {SHOP_INFO.landmark && (
-                        <span className="block text-xs text-muted-foreground">{SHOP_INFO.landmark}</span>
-                      )}
-                    </span>
-                  </a>
-                  <a
-                    href={`tel:+${WHATSAPP_NUMBER}`}
-                    className="flex items-center gap-3 text-card-foreground underline-offset-4 hover:underline"
-                  >
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent">
-                      <Phone className="size-5 text-accent-foreground" aria-hidden="true" />
-                    </span>
-                    <span className="text-sm font-semibold">{SHOP_INFO.phoneDisplay}</span>
-                  </a>
-                  <div className="flex items-center gap-3 text-card-foreground">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent">
-                      <Clock className="size-5 text-accent-foreground" aria-hidden="true" />
-                    </span>
-                    <span className="text-sm">{SHOP_INFO.hours}</span>
-                    <OpenStatusBadge />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <a
-                    href={SHOP_INFO.directionsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 font-bold text-primary-foreground hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-                  >
-                    <Navigation className="size-5" aria-hidden="true" />
-                    Obtenir l&apos;itinéraire
-                  </a>
-                  <a
-                    href={SHOP_INFO.mapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-background px-6 text-sm font-semibold text-foreground hover:border-primary hover:text-primary"
-                  >
-                    Voir sur Google Maps
-                    <ArrowUpRight className="size-4" aria-hidden="true" />
-                  </a>
-                  <a
-                    href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 font-semibold text-whatsapp-foreground hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-                  >
-                    <Phone className="size-5" aria-hidden="true" />
-                    Commander sur WhatsApp
-                  </a>
-                </div>
-              </div>
+            <div className="mt-8">
+              <LocationMap />
             </div>
           </ScrollReveal>
         </div>

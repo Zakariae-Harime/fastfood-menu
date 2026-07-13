@@ -31,6 +31,4 @@ export const SHOP_INFO = {
   mapsUrl: 'https://maps.app.goo.gl/x6LtTPYBETDf544X9',
   mapEmbedUrl:
     'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
-  directionsUrl:
-    'https://www.google.com/maps/dir/?api=1&destination=35.7809773%2C-5.8159282&destination_place_id=Snack%20Maestro&travelmode=driving',
 }

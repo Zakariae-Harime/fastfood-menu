@@ -1,44 +1,24 @@
 import { WHATSAPP_NUMBER } from '@/lib/config'
+import type { Language } from '@/lib/language-context'
 import type { CartLine } from '@/lib/types'
 import { lineSubtotal } from '@/lib/types'
 
-export function buildOrderMessage(
-  lines: CartLine[],
-  customerName: string,
-  mode: 'sur-place' | 'a-emporter',
-): string {
-  const parts: string[] = ['🥪 طلب جديد — سناك مايسترو', '']
+export function buildOrderMessage(lines: CartLine[], customerName: string, mode: 'sur-place' | 'a-emporter', language: Language): string {
+  const darija = language === 'darija'
+  const parts: string[] = [darija ? 'طلب جديد — سناك مايسترو' : 'Nouvelle commande — Snack Maestro', '']
   for (const line of lines) {
-    parts.push(`▪ ${line.quantity}× ${line.item.name_darija}`)
-    if (line.bread) parts.push(`   الخبز: ${line.bread.name_darija}`)
-
-    // Removed ingredients ("بلا …") and added extra portions ("… ×2").
-    const removed = line.ingredients.filter((c) => c.quantity === 0)
-    const added = line.ingredients.filter((c) => c.quantity > 1)
-    if (removed.length > 0) {
-      parts.push(`   بلا: ${removed.map((c) => c.ingredient.name_darija).join('، ')}`)
-    }
-    if (added.length > 0) {
-      parts.push(
-        `   زيادة: ${added.map((c) => `${c.ingredient.name_darija} ×${c.quantity}`).join('، ')}`,
-      )
-    }
-
-    if (line.extras.length > 0) {
-      parts.push(
-        `   إكسترا: ${line.extras.map((e) => `${e.name_darija} (+${e.price} درهم)`).join('، ')}`,
-      )
-    }
-    parts.push(`   الثمن: ${lineSubtotal(line)} درهم`)
+    parts.push(`• ${line.quantity}× ${darija ? line.item.name_darija : line.item.name_fr}`)
+    if (line.bread) parts.push(`   ${darija ? 'الخبز' : 'Pain'}: ${darija ? line.bread.name_darija : line.bread.name}`)
+    const removed = line.ingredients.filter((choice) => choice.quantity === 0)
+    const added = line.ingredients.filter((choice) => choice.quantity > 1)
+    if (removed.length) parts.push(`   ${darija ? 'بلا' : 'Sans'}: ${removed.map((choice) => darija ? choice.ingredient.name_darija : choice.ingredient.name).join(darija ? '، ' : ', ')}`)
+    if (added.length) parts.push(`   ${darija ? 'زيادة' : 'En plus'}: ${added.map((choice) => `${darija ? choice.ingredient.name_darija : choice.ingredient.name} ×${choice.quantity}`).join(darija ? '، ' : ', ')}`)
+    if (line.extras.length) parts.push(`   ${darija ? 'إكسترا' : 'Extras'}: ${line.extras.map((extra) => `${darija ? extra.name_darija : extra.name} (+${extra.price} DH)`).join(darija ? '، ' : ', ')}`)
+    parts.push(`   ${darija ? 'الثمن' : 'Prix'}: ${lineSubtotal(line)} DH`)
   }
-  const total = lines.reduce((sum, l) => sum + lineSubtotal(l), 0)
-  parts.push('')
-  parts.push(`💰 المجموع: ${total} درهم`)
-  parts.push(`👤 السمية: ${customerName || '—'}`)
-  parts.push(`📍 ${mode === 'sur-place' ? 'ناكل فالمحل' : 'نديه معايا'}`)
+  const total = lines.reduce((sum, line) => sum + lineSubtotal(line), 0)
+  parts.push('', `${darija ? 'المجموع' : 'Total'}: ${total} DH`, `${darija ? 'السميّة' : 'Nom'}: ${customerName || '—'}`, darija ? (mode === 'sur-place' ? 'ناكل فالمحل' : 'نديه معايا') : (mode === 'sur-place' ? 'Sur place' : 'À emporter'))
   return parts.join('\n')
 }
 
-export function buildWhatsAppUrl(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
-}
+export function buildWhatsAppUrl(message: string) { return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}` }

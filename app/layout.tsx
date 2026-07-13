@@ -1,6 +1,7 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Inter, Noto_Sans_Arabic } from 'next/font/google'
+import { LanguageProvider } from '@/lib/language-context'
 import './globals.css'
 
 const inter = Inter({
@@ -39,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`bg-background ${inter.variable} ${archivo.variable} ${notoArabic.variable}`}>
       <body className="font-sans antialiased">
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

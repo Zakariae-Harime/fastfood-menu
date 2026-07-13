@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Clock, Flame, Leaf, MapPin, Phone, UtensilsCrossed } from 'lucide-react'
+import { Clock, Flame, Leaf, Navigation, UtensilsCrossed } from 'lucide-react'
 import { HeroVideo } from '@/components/hero-video'
-import { OpenStatusBadge } from '@/components/open-status-badge'
+import { LocationMap } from '@/components/location-map'
 import { QrCard } from '@/components/qr-card'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SpecialtiesGrid } from '@/components/specialties-grid'
@@ -53,7 +53,10 @@ export default function HomePage() {
             {SHOP_INFO.intro}
           </p>
 
-          <div className="animate-hero-rise" style={{ animationDelay: '300ms' }}>
+          <div
+            className="animate-hero-rise flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+            style={{ animationDelay: '300ms' }}
+          >
             <Link
               href="/menu"
               className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-primary px-10 text-lg font-bold text-primary-foreground shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl active:scale-95"
@@ -61,6 +64,13 @@ export default function HomePage() {
               <UtensilsCrossed className="size-5" aria-hidden="true" />
               Voir le menu
             </Link>
+            <a
+              href="#itineraire"
+              className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/40 bg-black/30 px-8 font-bold text-white backdrop-blur-sm hover:-translate-y-0.5 hover:border-white/70 hover:bg-black/50 active:scale-95"
+            >
+              <Navigation className="size-5" aria-hidden="true" />
+              Voir l&apos;itinéraire
+            </a>
           </div>
 
           <p className="animate-hero-rise text-xs text-white/50" style={{ animationDelay: '450ms' }}>
@@ -127,54 +137,25 @@ export default function HomePage() {
 
       {/* Contact */}
       <section className="px-6 py-16" aria-labelledby="contact-title">
-        <div className="mx-auto max-w-md">
+        <div className="mx-auto max-w-5xl">
           <ScrollReveal>
+            <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+              Au cœur de Tanger
+            </p>
             <h2
               id="contact-title"
-              className="text-center font-display text-3xl font-black uppercase tracking-tight text-balance sm:text-4xl"
+              className="mt-2 text-center font-display text-3xl font-black uppercase tracking-tight text-balance sm:text-4xl"
             >
               Nous trouver
             </h2>
+            <p className="mx-auto mt-3 max-w-lg text-center text-sm leading-relaxed text-muted-foreground text-pretty">
+              Lancez votre trajet en un geste ou repérez le snack directement sur la carte.
+            </p>
           </ScrollReveal>
 
           <ScrollReveal delay={120}>
-            <div className="mt-8 flex flex-col gap-4 rounded-3xl bg-card p-6 shadow-sm">
-              <a
-                href={SHOP_INFO.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-card-foreground underline-offset-4 hover:underline"
-              >
-                <MapPin className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="text-sm">
-                  {SHOP_INFO.address}
-                  {SHOP_INFO.landmark && (
-                    <span className="block text-xs text-muted-foreground">{SHOP_INFO.landmark}</span>
-                  )}
-                </span>
-              </a>
-              <a
-                href={`tel:+${WHATSAPP_NUMBER}`}
-                className="flex items-center gap-3 text-card-foreground underline-offset-4 hover:underline"
-              >
-                <Phone className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="text-sm">{SHOP_INFO.phoneDisplay}</span>
-              </a>
-              <div className="flex items-center gap-3 text-card-foreground">
-                <Clock className="size-5 shrink-0 text-primary" aria-hidden="true" />
-                <span className="text-sm">{SHOP_INFO.hours}</span>
-                <OpenStatusBadge />
-              </div>
-
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 font-semibold text-whatsapp-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
-              >
-                <Phone className="size-5" aria-hidden="true" />
-                Commander sur WhatsApp
-              </a>
+            <div className="mt-8">
+              <LocationMap />
             </div>
           </ScrollReveal>
         </div>

@@ -24,5 +24,11 @@ export const SHOP_INFO = {
   address: 'Q5JM+9JW, Tanger, Maroc',
   landmark: '', // optional, e.g. "Près de la Mosquée ..." — shown next to the address if set
   phoneDisplay: '06 61 39 38 26',
-  mapsUrl: 'https://maps.google.com/?q=Q5JM%2B9JW+Tanger',
+  coordinates: {
+    latitude: 35.7809773,
+    longitude: -5.8159282,
+  },
+  mapsUrl: 'https://maps.app.goo.gl/x6LtTPYBETDf544X9',
+  mapEmbedUrl:
+    'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
 }

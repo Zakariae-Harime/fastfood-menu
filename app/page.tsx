@@ -69,13 +69,17 @@ export default function HomePage() {
       <section className="bg-card px-6 py-16" aria-labelledby="values-title">
         <div className="mx-auto max-w-4xl">
           <ScrollReveal><h2 id="values-title" className="text-center font-display text-3xl font-black uppercase tracking-tight text-card-foreground text-balance sm:text-4xl">{t('values.title')}</h2></ScrollReveal>
-          <div className="mt-10 flex flex-col gap-6 sm:grid sm:grid-cols-3">
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:mt-10 sm:grid-cols-3 sm:gap-6">
             {VALUES.map((value, index) => (
-              <ScrollReveal key={value.key} delay={index * 120}>
-                <div className="flex flex-col items-center gap-3 rounded-3xl bg-background p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-                  <span className="flex size-12 items-center justify-center rounded-full bg-accent"><value.icon className="size-6 text-accent-foreground" aria-hidden="true" /></span>
-                  <h3 className="font-display text-lg font-bold">{t(`values.${value.key}.title`)}</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">{t(`values.${value.key}.description`)}</p>
+              <ScrollReveal
+                key={value.key}
+                delay={index * 120}
+                className={`${index === 2 ? 'col-span-2' : 'col-span-1'} sm:col-span-1`}
+              >
+                <div className="flex h-full flex-col items-start gap-2.5 rounded-3xl bg-background p-4 text-start transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:items-center sm:gap-3 sm:p-6 sm:text-center">
+                  <span className="flex size-10 items-center justify-center rounded-full bg-accent sm:size-12"><value.icon className="size-5 text-accent-foreground sm:size-6" aria-hidden="true" /></span>
+                  <h3 className="font-display text-base font-bold leading-tight sm:text-lg">{t(`values.${value.key}.title`)}</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">{t(`values.${value.key}.description`)}</p>
                 </div>
               </ScrollReveal>
             ))}

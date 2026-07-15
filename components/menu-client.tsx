@@ -2,7 +2,7 @@
 
 import { useDeferredValue, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, ChevronDown, LayoutGrid, Search, X } from 'lucide-react'
+import { ArrowLeft, Search, X } from 'lucide-react'
 import { BrandLogo } from '@/components/brand-logo'
 import { CartDrawer } from '@/components/cart-drawer'
 import { CustomizeSheet } from '@/components/customize-sheet'
@@ -19,7 +19,6 @@ function MenuContent() {
   const { t, categoryName, isRtl } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<MenuCategory>(MENU_CATEGORIES[0])
   const [customizing, setCustomizing] = useState<MenuItem | null>(null)
-  const [categoriesOpen, setCategoriesOpen] = useState(false)
   const [query, setQuery] = useState('')
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase())
 
@@ -47,14 +46,13 @@ function MenuContent() {
 
   function selectCategory(category: MenuCategory, button?: HTMLButtonElement) {
     setActiveCategory(category)
-    setCategoriesOpen(false)
     button?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
   }
 
   return (
     <main className="min-h-dvh pb-28">
       <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 pt-3">
+        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 pt-2 sm:pt-3">
           <Link
             href="/"
             className="flex size-11 shrink-0 items-center justify-center rounded-full bg-card shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -91,56 +89,17 @@ function MenuContent() {
           ) : null}
         </div>
 
-        <div className="mx-auto max-w-6xl px-4 py-3 md:hidden">
-          <button
-            type="button"
-            onClick={() => setCategoriesOpen((open) => !open)}
-            aria-expanded={categoriesOpen}
-            aria-controls="mobile-menu-categories"
-            className="flex min-h-12 w-full cursor-pointer items-center gap-3 rounded-2xl border border-border bg-card px-4 text-start shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-              <LayoutGrid className="size-5" aria-hidden="true" />
-            </span>
-            <span className="min-w-0 flex-1">
-              <span className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t('menu.categories')}</span>
-              <span className="block truncate font-display text-base font-bold">{categoryName(activeCategory)}</span>
-            </span>
-            <ChevronDown className={`size-5 shrink-0 text-muted-foreground transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-          </button>
-
-          {categoriesOpen ? (
-            <nav id="mobile-menu-categories" className="mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-border bg-card p-2 shadow-lg" aria-label={t('menu.categories')}>
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => selectCategory(category)}
-                  aria-pressed={activeCategory === category}
-                  className={`min-h-12 cursor-pointer rounded-xl px-3 text-start text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-                    activeCategory === category
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-muted text-foreground active:bg-accent'
-                  }`}
-                >
-                  {categoryName(category)}
-                </button>
-              ))}
-            </nav>
-          ) : null}
-        </div>
-
-        <nav className="scrollbar-none mx-auto hidden max-w-6xl gap-2 overflow-x-auto px-4 py-3 md:flex" aria-label={t('menu.categories')}>
+        <nav className="scrollbar-none mx-auto flex max-w-6xl snap-x snap-mandatory gap-2 overflow-x-auto scroll-px-4 px-4 py-2.5 sm:py-3" aria-label={t('menu.categories')}>
           {categories.map((category) => (
             <button
               key={category}
               type="button"
               onClick={(event) => selectCategory(category, event.currentTarget)}
               aria-pressed={activeCategory === category}
-              className={`min-h-11 shrink-0 cursor-pointer rounded-full border px-5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              className={`min-h-11 shrink-0 snap-start cursor-pointer rounded-full border px-4 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-5 ${
                 activeCategory === category
-                  ? 'border-foreground bg-foreground text-background'
-                  : 'border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground'
+                  ? 'border-primary bg-primary text-primary-foreground shadow-sm'
+                  : 'border-border bg-card text-foreground hover:border-primary active:bg-accent'
               }`}
             >
               {categoryName(category)}
@@ -149,7 +108,7 @@ function MenuContent() {
         </nav>
       </header>
 
-      <section className="mx-auto max-w-6xl px-4 pt-5" aria-labelledby="active-menu-category">
+      <section className="mx-auto max-w-6xl px-4 pt-4 sm:pt-5" aria-labelledby="active-menu-category">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t('menu.title')}</p>
@@ -163,14 +122,14 @@ function MenuContent() {
         </div>
 
         {isLoading ? (
-          <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3" aria-label={t('menu.title')}>
-            {[1, 2, 3].map((i) => <div key={i} className="h-44 animate-pulse rounded-3xl bg-muted" aria-hidden="true" />)}
+          <div className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3" aria-label={t('menu.title')}>
+            {[1, 2, 3].map((i) => <div key={i} className="h-40 animate-pulse rounded-3xl bg-muted sm:h-44" aria-hidden="true" />)}
           </div>
         ) : null}
         {error && !isLoading ? <p className="py-12 text-center text-muted-foreground">{t('menu.error')}</p> : null}
         {!isLoading && !error ? (
           filtered.length ? (
-            <div key={`${activeCategory}-${deferredQuery}`} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div key={`${activeCategory}-${deferredQuery}`} className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
               {filtered.map((item, index) => (
                 <ScrollReveal key={item.id} delay={(index % 3) * 70}>
                   <MenuItemCard item={item} onCustomize={setCustomizing} />

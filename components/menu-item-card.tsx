@@ -1,6 +1,6 @@
 'use client'
 
-import { Plus } from 'lucide-react'
+import { Plus, SlidersHorizontal } from 'lucide-react'
 import { useLanguage } from '@/lib/language-context'
 import type { MenuItem } from '@/lib/types'
 import { formatPrice } from '@/lib/types'
@@ -12,20 +12,39 @@ interface MenuItemCardProps {
 
 export function MenuItemCard({ item, onCustomize }: MenuItemCardProps) {
   const { t, itemName, ingredientName } = useLanguage()
-  const isCustomizable = item.bread_options.length > 0 || item.extras.length > 0
+  const isCustomizable = item.bread_options.length > 0 || item.extras.length > 0 || item.included.length > 0
   const name = itemName(item)
+  const description = item.included.map(ingredientName).join(' · ')
 
   return (
-    <article className="overflow-hidden rounded-3xl bg-card shadow-sm">
-      {item.image ? <img src={item.image} alt={name} className="h-40 w-full object-cover" loading="lazy" /> : null}
-      <div className="flex flex-col gap-2 p-4">
+    <article className="group flex h-full min-h-40 overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md">
+      {item.image ? (
+        <img
+          src={item.image}
+          alt={name}
+          width={320}
+          height={320}
+          className="w-32 shrink-0 object-cover sm:w-36"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <div className="flex w-3 shrink-0 bg-primary" aria-hidden="true" />
+      )}
+      <div className="flex min-w-0 flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">
           <h3 className="min-w-0 font-display text-lg font-bold leading-tight text-card-foreground text-balance">{name}</h3>
-          <span className="shrink-0 rounded-full bg-accent px-3 py-1.5 font-display text-base font-bold text-accent-foreground" dir="ltr">{formatPrice(item.base_price)}</span>
+          <span className="shrink-0 rounded-full bg-accent px-3 py-1.5 font-display text-sm font-bold tabular-nums text-accent-foreground" dir="ltr">
+            {formatPrice(item.base_price)}
+          </span>
         </div>
-        <p className="text-sm leading-relaxed text-muted-foreground">{item.included.map(ingredientName).join(' · ')}</p>
-        <button type="button" onClick={() => onCustomize(item)} className="mt-1 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground transition-transform active:scale-95">
-          <Plus className="size-5" aria-hidden="true" />
+        {description ? <p className="text-sm leading-relaxed text-muted-foreground">{description}</p> : null}
+        <button
+          type="button"
+          onClick={() => onCustomize(item)}
+          className="mt-auto inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 self-stretch rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
+          {isCustomizable ? <SlidersHorizontal className="size-4" aria-hidden="true" /> : <Plus className="size-4" aria-hidden="true" />}
           {t(isCustomizable ? 'menu.customize' : 'menu.add')}
         </button>
       </div>

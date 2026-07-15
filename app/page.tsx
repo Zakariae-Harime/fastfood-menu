@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Clock, Flame, Leaf, Navigation, UtensilsCrossed } from 'lucide-react'
+import { BrandLogo } from '@/components/brand-logo'
 import { HeroVideo } from '@/components/hero-video'
 import { LanguageToggle } from '@/components/language-toggle'
 import { LocationMap } from '@/components/location-map'
@@ -30,11 +31,10 @@ export default function HomePage() {
           <LanguageToggle inverted />
         </div>
         <div className="relative z-10 flex flex-col items-center gap-6 px-6 pb-12 pt-32 text-center">
-          <div className="animate-hero-rise flex flex-col items-center gap-2">
-            <h1 className="font-display text-5xl font-black uppercase tracking-tight text-white text-balance sm:text-7xl" dir="ltr">
-              Snack Maestro
-            </h1>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400">{t('hero.tagline')}</p>
+          <div className="animate-hero-rise flex flex-col items-center gap-1">
+            <h1 className="sr-only">Maestro Fast Food Tanger</h1>
+            <BrandLogo inverted />
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{t('hero.tagline')}</p>
           </div>
           <p className="animate-hero-rise max-w-md text-base leading-relaxed text-white/90 text-pretty" style={{ animationDelay: '150ms' }}>
             {t('hero.intro')}

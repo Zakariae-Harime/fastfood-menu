@@ -16,6 +16,14 @@ test('cart drawer has compact sheet zones and focus recovery', async () => {
   assert.match(source, /requestAnimationFrame/)
 })
 
+test('fixed cart header shows a localized item count', async () => {
+  const drawer = await read('components/cart-drawer.tsx')
+  const messages = await read('lib/language-context.tsx')
+  assert.match(drawer, /t\('cart\.itemCount', \{ count: itemCount \}\)/)
+  assert.match(drawer, /aria-live="polite"/)
+  assert.match(messages, /'cart\.itemCount': '[^']*\{count\}[^']*'/)
+})
+
 test('special request is an accessible disclosure', async () => {
   const source = await read('components/cart-customer-details.tsx')
   assert.match(source, /aria-expanded=\{noteOpen\}/)

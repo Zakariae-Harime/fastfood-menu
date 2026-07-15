@@ -63,7 +63,12 @@ export function CartDrawer() {
           <button type="button" className="absolute inset-0 bg-black/50" onClick={closeCart} aria-label={t('cart.close')} />
           <div className="absolute inset-x-0 bottom-0 flex max-h-[88dvh] flex-col rounded-t-3xl bg-card shadow-2xl">
             <header className="flex shrink-0 items-center justify-between border-b border-border px-4 py-3">
-              <h2 id="cart-title" className="font-display text-xl font-bold text-card-foreground">{t('cart.title')}</h2>
+              <div className="flex min-w-0 items-center gap-2.5">
+                <h2 id="cart-title" className="font-display text-xl font-bold text-card-foreground">{t('cart.title')}</h2>
+                <span className="shrink-0 rounded-full bg-accent px-2.5 py-1 text-xs font-bold text-accent-foreground" aria-live="polite">
+                  {t('cart.itemCount', { count: itemCount })}
+                </span>
+              </div>
               <button
                 ref={closeButtonRef}
                 type="button"

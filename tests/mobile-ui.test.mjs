@@ -17,3 +17,16 @@ test('menu cards use optimized responsive images and compact actions', async () 
   assert.match(source, /sizes="\(max-width: 399px\) 112px/)
   assert.match(source, /min-h-11/)
 })
+
+test('specialties use a mobile snap rail and optimized images', async () => {
+  const source = await read('components/specialties-grid.tsx')
+  assert.match(source, /snap-x/)
+  assert.match(source, /basis-\[84%\]/)
+  assert.match(source, /import Image from 'next\/image'/)
+})
+
+test('the third value spans the mobile values grid', async () => {
+  const source = await read('app/page.tsx')
+  assert.match(source, /grid-cols-2/)
+  assert.match(source, /index === 2 \? 'col-span-2'/)
+})

@@ -3,7 +3,7 @@ import type { Language } from '@/lib/language-context'
 import type { CartLine } from '@/lib/types'
 import { lineSubtotal } from '@/lib/types'
 
-export function buildOrderMessage(lines: CartLine[], customerName: string, mode: 'sur-place' | 'a-emporter', language: Language): string {
+export function buildOrderMessage(lines: CartLine[], customerName: string, mode: 'sur-place' | 'a-emporter', language: Language, customerNote = ''): string {
   const darija = language === 'darija'
   const parts: string[] = [darija ? 'طلب جديد — سناك مايسترو' : 'Nouvelle commande — Snack Maestro', '']
   for (const line of lines) {
@@ -18,6 +18,8 @@ export function buildOrderMessage(lines: CartLine[], customerName: string, mode:
   }
   const total = lines.reduce((sum, line) => sum + lineSubtotal(line), 0)
   parts.push('', `${darija ? 'المجموع' : 'Total'}: ${total} DH`, `${darija ? 'السميّة' : 'Nom'}: ${customerName || '—'}`, darija ? (mode === 'sur-place' ? 'ناكل فالمحل' : 'نديه معايا') : (mode === 'sur-place' ? 'Sur place' : 'À emporter'))
+  const note = customerNote.trim()
+  if (note) parts.push('', `${darija ? 'ملاحظة للطلب' : 'Note pour la commande'}:`, note)
   return parts.join('\n')
 }
 

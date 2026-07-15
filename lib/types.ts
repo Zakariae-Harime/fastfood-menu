@@ -1,4 +1,22 @@
-export type MenuCategory = 'Sandwichs' | 'Boissons' | 'Extras'
+export const MENU_CATEGORIES = [
+  'EntreesFroides',
+  'Pizza',
+  'SandwichsFrais',
+  'SandwichsChauds',
+  'Panini',
+  'Shawarma',
+  'Tagine',
+  'Pasticcio',
+  'Pates',
+  'PlatsChauds',
+  'Foure',
+  'Hamburgers',
+  'Tacos',
+  'PlatsSpeciaux',
+  'Boissons',
+] as const
+
+export type MenuCategory = (typeof MENU_CATEGORIES)[number]
 
 // A bread choice or included ingredient, carrying both the French label
 // shown in the UI and the Darija label used in the WhatsApp order message.

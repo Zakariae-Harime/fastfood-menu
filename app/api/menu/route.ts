@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import localMenu from '@/public/data/menu.json'
 
 // Cache Airtable responses at the server/edge for 5 minutes. This is the
 // real lever against Airtable's free-tier limit of 1,000 API calls/month:
@@ -15,10 +16,7 @@ export async function GET() {
   const baseId = process.env.AIRTABLE_BASE_ID
 
   if (!token || !baseId) {
-    return NextResponse.json(
-      { error: 'AIRTABLE_TOKEN or AIRTABLE_BASE_ID not configured' },
-      { status: 500 },
-    )
+    return NextResponse.json(localMenu)
   }
 
   try {
@@ -48,7 +46,7 @@ export async function GET() {
     } while (offset)
 
     return NextResponse.json(items)
-  } catch (err) {
-    return NextResponse.json({ error: 'Failed to fetch Airtable menu' }, { status: 502 })
+  } catch {
+    return NextResponse.json(localMenu)
   }
 }

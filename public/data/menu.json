@@ -1,219 +1,126 @@
 [
-  {
-    "id": "bocadillo-mixte",
-    "name_fr": "Bocadillo Mixte",
-    "name_darija": "بوكاديو مخلط",
-    "category": "Sandwichs",
-    "base_price": 30,
-    "bread_options": [
-      { "name": "Baguette", "name_darija": "باكيط" },
-      { "name": "Pain rond", "name_darija": "خبز مدور" },
-      { "name": "Panini", "name_darija": "بانيني" }
-    ],
-    "included": [
-      { "name": "Thon", "name_darija": "طون" },
-      { "name": "Oeuf", "name_darija": "بيض" },
-      { "name": "Frites", "name_darija": "فريط" },
-      { "name": "Olives", "name_darija": "زيتون" },
-      { "name": "Salade", "name_darija": "شلاضة" },
-      { "name": "Mayonnaise", "name_darija": "مايونيز" }
-    ],
-    "extras": [
-      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
-      { "name": "Viande hachée", "name_darija": "لحم مفروم", "price": 10 },
-      { "name": "Oeuf supplémentaire", "name_darija": "بيضة زايدة", "price": 3 },
-      { "name": "Sauce harissa", "name_darija": "هريسة", "price": 2 }
-    ],
-    "available": true,
-    "featured": true,
-    "image": "/images/menu/bocadillo-mixte.png"
-  },
-  {
-    "id": "bocadillo-poulet",
-    "name_fr": "Bocadillo Poulet",
-    "name_darija": "بوكاديو الدجاج",
-    "category": "Sandwichs",
-    "base_price": 28,
-    "bread_options": [
-      { "name": "Baguette", "name_darija": "باكيط" },
-      { "name": "Pain rond", "name_darija": "خبز مدور" },
-      { "name": "Panini", "name_darija": "بانيني" }
-    ],
-    "included": [
-      { "name": "Poulet mariné grillé", "name_darija": "دجاج مشوي متبل" },
-      { "name": "Frites", "name_darija": "فريط" },
-      { "name": "Salade", "name_darija": "شلاضة" },
-      { "name": "Sauce maison", "name_darija": "صوص ديال الدار" }
-    ],
-    "extras": [
-      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
-      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
-      { "name": "Champignons", "name_darija": "شامبينيون", "price": 5 },
-      { "name": "Sauce algérienne", "name_darija": "صوص جزائرية", "price": 3 }
-    ],
-    "available": true,
-    "featured": true,
-    "image": "/images/menu/bocadillo-poulet.png"
-  },
-  {
-    "id": "bocadillo-kefta",
-    "name_fr": "Bocadillo Kefta",
-    "name_darija": "بوكاديو الكفتة",
-    "category": "Sandwichs",
-    "base_price": 32,
-    "bread_options": [
-      { "name": "Baguette", "name_darija": "باكيط" },
-      { "name": "Pain rond", "name_darija": "خبز مدور" }
-    ],
-    "included": [
-      { "name": "Kefta grillée", "name_darija": "كفتة مشوية" },
-      { "name": "Oignons", "name_darija": "بصلة" },
-      { "name": "Tomates", "name_darija": "طماطم" },
-      { "name": "Harissa", "name_darija": "هريسة" },
-      { "name": "Frites", "name_darija": "فريط" }
-    ],
-    "extras": [
-      { "name": "Fromage", "name_darija": "فرماج", "price": 5 },
-      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
-      { "name": "Double kefta", "name_darija": "كفتة مضاعفة", "price": 12 }
-    ],
-    "available": true,
-    "featured": true,
-    "image": "/images/menu/bocadillo-kefta.png"
-  },
-  {
-    "id": "bocadillo-viande-hachee",
-    "name_fr": "Bocadillo Viande Hachée",
-    "name_darija": "بوكاديو اللحم المفروم",
-    "category": "Sandwichs",
-    "base_price": 35,
-    "bread_options": [
-      { "name": "Baguette", "name_darija": "باكيط" },
-      { "name": "Pain rond", "name_darija": "خبز مدور" },
-      { "name": "Panini", "name_darija": "بانيني" }
-    ],
-    "included": [
-      { "name": "Viande hachée", "name_darija": "لحم مفروم" },
-      { "name": "Fromage fondu", "name_darija": "فرماج ذايب" },
-      { "name": "Frites", "name_darija": "فريط" },
-      { "name": "Salade", "name_darija": "شلاضة" }
-    ],
-    "extras": [
-      { "name": "Double viande", "name_darija": "لحم مضاعف", "price": 12 },
-      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
-      { "name": "Champignons", "name_darija": "شامبينيون", "price": 5 },
-      { "name": "Sauce barbecue", "name_darija": "صوص باربكيو", "price": 3 }
-    ],
-    "available": true,
-    "image": "/images/menu/bocadillo-viande-hachee.png"
-  },
-  {
-    "id": "bocadillo-thon",
-    "name_fr": "Bocadillo Thon-Fromage",
-    "name_darija": "بوكاديو التونة",
-    "category": "Sandwichs",
-    "base_price": 25,
-    "bread_options": [
-      { "name": "Baguette", "name_darija": "باكيط" },
-      { "name": "Pain rond", "name_darija": "خبز مدور" }
-    ],
-    "included": [
-      { "name": "Thon", "name_darija": "طون" },
-      { "name": "Fromage", "name_darija": "فرماج" },
-      { "name": "Olives", "name_darija": "زيتون" },
-      { "name": "Maïs", "name_darija": "درة" },
-      { "name": "Mayonnaise", "name_darija": "مايونيز" }
-    ],
-    "extras": [
-      { "name": "Oeuf", "name_darija": "بيضة", "price": 3 },
-      { "name": "Frites dedans", "name_darija": "فريط داخل", "price": 4 },
-      { "name": "Sauce harissa", "name_darija": "هريسة", "price": 2 }
-    ],
-    "available": true,
-    "image": "/images/menu/bocadillo-thon.png"
-  },
-  {
-    "id": "soda",
-    "name_fr": "Soda (canette)",
-    "name_darija": "مونادة",
-    "category": "Boissons",
-    "base_price": 8,
-    "bread_options": [],
-    "included": [
-      { "name": "Coca, Fanta, Sprite ou Hawai — 33cl bien frais", "name_darija": "كوكا، فانطا، سبريت ولا هاواي — 33 سl بارد" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/soda.png"
-  },
-  {
-    "id": "jus-avocat",
-    "name_fr": "Jus d'Avocat",
-    "name_darija": "عصير الأفوكادو",
-    "category": "Boissons",
-    "base_price": 15,
-    "bread_options": [],
-    "included": [
-      { "name": "Avocat frais, lait, amandes concassées", "name_darija": "أفوكادو طري، حليب، لوز مطحون" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/jus-avocat.png"
-  },
-  {
-    "id": "the-menthe",
-    "name_fr": "Thé à la Menthe",
-    "name_darija": "أتاي بالنعناع",
-    "category": "Boissons",
-    "base_price": 10,
-    "bread_options": [],
-    "included": [
-      { "name": "Thé vert, menthe fraîche du jour", "name_darija": "أتاي أخضر، نعناع طري ديال النهار" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/the-menthe.png"
-  },
-  {
-    "id": "frites",
-    "name_fr": "Portion de Frites",
-    "name_darija": "فريط",
-    "category": "Extras",
-    "base_price": 10,
-    "bread_options": [],
-    "included": [
-      { "name": "Frites maison croustillantes, sel", "name_darija": "فريط ديال الدار مقرمش، ملحة" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/frites.png"
-  },
-  {
-    "id": "tenders",
-    "name_fr": "Tenders de Poulet (x4)",
-    "name_darija": "تندرز الدجاج",
-    "category": "Extras",
-    "base_price": 20,
-    "bread_options": [],
-    "included": [
-      { "name": "4 tenders croustillants, sauce à l'ail", "name_darija": "4 تندرز مقرمش، صوص الثوم" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/tenders.png"
-  },
-  {
-    "id": "salade",
-    "name_fr": "Salade Marocaine",
-    "name_darija": "شلاضة مغربية",
-    "category": "Extras",
-    "base_price": 8,
-    "bread_options": [],
-    "included": [
-      { "name": "Tomates, concombres, oignons, olives, huile d'olive", "name_darija": "طماطم، خيار، بصلة، زيتون، زيت الزيتون" }
-    ],
-    "extras": [],
-    "available": true,
-    "image": "/images/menu/salade.png"
-  }
+  {"id":"salade-marocaine","name_fr":"Salade Marocaine","name_darija":"سلطة مغربية","category":"EntreesFroides","base_price":15,"bread_options":[],"included":[],"extras":[],"available":true,"image":"/images/menu/salade.png"},
+  {"id":"salade-normale","name_fr":"Salade normale","name_darija":"سلطة عادية","category":"EntreesFroides","base_price":20,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-mixte","name_fr":"Salade mixte","name_darija":"سلطة متنوعة","category":"EntreesFroides","base_price":25,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-cesar","name_fr":"Salade César","name_darija":"سلطة سيزار","category":"EntreesFroides","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-fruits-mer","name_fr":"Salade fruits de mer","name_darija":"سلطة فواكه البحر","category":"EntreesFroides","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-riche","name_fr":"Salade riche","name_darija":"سلطة غنية","category":"EntreesFroides","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-exotique","name_fr":"Salade exotique","name_darija":"سلطة إكزوتيك","category":"EntreesFroides","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-italienne","name_fr":"Salade italienne","name_darija":"سلطة إيطالية","category":"EntreesFroides","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"salade-chef","name_fr":"Salade du chef","name_darija":"سلطة الشاف","category":"EntreesFroides","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"pizza-margarita","name_fr":"Pizza Margarita","name_darija":"بيتزا بالجبن","category":"Pizza","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true,"featured":true},
+  {"id":"pizza-thon","name_fr":"Pizza Thon","name_darija":"بيتزا بالطون","category":"Pizza","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-vegetarienne","name_fr":"Pizza Végétarienne","name_darija":"بيتزا بالخضر","category":"Pizza","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-champignon","name_fr":"Pizza Champignon","name_darija":"بيتزا بالشامبينيون","category":"Pizza","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-bolognaise","name_fr":"Pizza Bolognaise","name_darija":"بيتزا بالكفتة","category":"Pizza","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-paysanne","name_fr":"Pizza Paysanne","name_darija":"بيتزا بالدجاج","category":"Pizza","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-fruits-mer","name_fr":"Pizza fruits de mer","name_darija":"بيتزا فواكه البحر","category":"Pizza","base_price":55,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-4-saisons","name_fr":"Pizza 4 saisons","name_darija":"بيتزا فصول 4","category":"Pizza","base_price":55,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-royale","name_fr":"Pizza Royale","name_darija":"بيتزا رويال","category":"Pizza","base_price":60,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-reine","name_fr":"Pizza Reine","name_darija":"بيتزا رين","category":"Pizza","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-mexicaine","name_fr":"Pizza Mexicaine","name_darija":"بيتزا مكسيكان","category":"Pizza","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pizza-blanche","name_fr":"Pizza Blanche","name_darija":"بيتزا بشاميل","category":"Pizza","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"frais-mortadelle","name_fr":"Mortadelle ou cacher ou œuf","name_darija":"مرتديلا أو كاشير أو بيض","category":"SandwichsFrais","base_price":15,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"frais-omelette","name_fr":"Omelette","name_darija":"أومليط","category":"SandwichsFrais","base_price":18,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"frais-cacher-mortadelle","name_fr":"Cacher + mortadelle ou œuf","name_darija":"كاشير + مرتديلا أو بيض","category":"SandwichsFrais","base_price":17,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"frais-thon","name_fr":"Thon","name_darija":"طون","category":"SandwichsFrais","base_price":20,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"frais-thon-cacher","name_fr":"Thon + cacher ou mortadelle","name_darija":"طون + كاشير أو مرتديلا","category":"SandwichsFrais","base_price":24,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"frais-complet","name_fr":"Thon + œuf + cacher + mortadelle","name_darija":"طون + بيض + كاشير + مرتديلا","category":"SandwichsFrais","base_price":28,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"chaud-kefta","name_fr":"Sandwich Kefta","name_darija":"سندويتش كفتة","category":"SandwichsChauds","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true,"featured":true,"image":"/images/menu/bocadillo-kefta.png"},
+  {"id":"chaud-saucisses","name_fr":"Sandwich Saucisses","name_darija":"سندويتش صوصيص","category":"SandwichsChauds","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-poulet","name_fr":"Sandwich Poulet","name_darija":"سندويتش دجاج","category":"SandwichsChauds","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true,"image":"/images/menu/bocadillo-poulet.png"},
+  {"id":"chaud-cerveau","name_fr":"Sandwich Cerveau","name_darija":"سندويتش مخ","category":"SandwichsChauds","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-foie","name_fr":"Sandwich Foie","name_darija":"سندويتش كبدة","category":"SandwichsChauds","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-viande","name_fr":"Sandwich Viande","name_darija":"سندويتش لحم","category":"SandwichsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-calamar","name_fr":"Sandwich Calamar","name_darija":"سندويتش كالامار","category":"SandwichsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-mixte","name_fr":"Sandwich Mixte","name_darija":"سندويتش متنوع","category":"SandwichsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-crevette","name_fr":"Sandwich Crevette","name_darija":"سندويتش كروفيت","category":"SandwichsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"chaud-spada","name_fr":"Sandwich Spada","name_darija":"سندويتش سبادا","category":"SandwichsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"panini-thon","name_fr":"Panini Thon + frites","name_darija":"بانيني الطون + فريت","category":"Panini","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-poulet","name_fr":"Panini Poulet + frites","name_darija":"بانيني دجاج + فريت","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-saucisses","name_fr":"Panini Saucisses + frites","name_darija":"بانيني صوصيص + فريت","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-kefta","name_fr":"Panini Kefta + frites","name_darija":"بانيني كفتة + فريت","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-shawarma","name_fr":"Panini Shawarma + frites","name_darija":"بانيني شاورما + فريت","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-viande","name_fr":"Panini Viande + frites","name_darija":"بانيني لحم + فريت","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-foie","name_fr":"Panini au foie + frites","name_darija":"بانيني كبدة + فريت","category":"Panini","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-calamar","name_fr":"Panini Calamar + frites","name_darija":"بانيني كالامار + فريت","category":"Panini","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-crevette","name_fr":"Panini Crevette + frites","name_darija":"بانيني كروفيت + فريت","category":"Panini","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-4-fromages","name_fr":"Panini 4 fromages","name_darija":"بانيني 4 أجبان","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"panini-charcuterie","name_fr":"Panini Charcuterie","name_darija":"بانيني شاركيتري","category":"Panini","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"shawarma","name_fr":"Shawarma","name_darija":"شاورما","category":"Shawarma","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true,"featured":true},
+  {"id":"shawarma-frites","name_fr":"Shawarma + frites","name_darija":"شاورما + فريت","category":"Shawarma","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"baguette-shawarma","name_fr":"Baguette Shawarma","name_darija":"سندويتش شاورما","category":"Shawarma","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"shawarma-frites-fromage","name_fr":"Shawarma + frites + fromage","name_darija":"شاورما + فريت + فرماج","category":"Shawarma","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"baguette-shawarma-frites","name_fr":"Baguette Shawarma + frites","name_darija":"سندويتش شاورما + فريت","category":"Shawarma","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"baguette-shawarma-complete","name_fr":"Baguette Shawarma + frites + fromage","name_darija":"سندويتش شاورما + فريت + فرماج","category":"Shawarma","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"shawarma-menu","name_fr":"Shawarma fromage + frites + Coca","name_darija":"شاورما فرماج + فريت + كوكا","category":"Shawarma","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"tagine-kefta","name_fr":"Tagine Kefta","name_darija":"طاجين كفتة","category":"Tagine","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"tagine-poulet","name_fr":"Tagine Poulet","name_darija":"طاجين دجاج","category":"Tagine","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"tagine-cerveau","name_fr":"Tagine Cerveau","name_darija":"طاجين مخ","category":"Tagine","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"tagine-foie","name_fr":"Tagine Foie","name_darija":"طاجين كبدة","category":"Tagine","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"pasticcio-fruits-mer","name_fr":"Pasticcio fruits de mer","name_darija":"باستيتشيو فواكه البحر","category":"Pasticcio","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pasticcio-viande","name_fr":"Pasticcio viande hachée","name_darija":"باستيتشيو الكفتة","category":"Pasticcio","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pasticcio-poulet","name_fr":"Pasticcio poulet","name_darija":"باستيتشيو الدجاج","category":"Pasticcio","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"lasagne-bolognaise","name_fr":"Lasagne Bolognaise","name_darija":"لازانيا بولونيز","category":"Pates","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"tagliatelle-fruits-mer","name_fr":"Tagliatelle fruits de mer","name_darija":"طاكلياتيل فواكه البحر","category":"Pates","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"spaghetti-bolognaise","name_fr":"Spaghetti Bolognaise","name_darija":"سباغيتي بولونيز","category":"Pates","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"croquettes-poisson","name_fr":"Croquettes de poisson (x6)","name_darija":"كروكيط الحوت (6)","category":"PlatsChauds","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-calamar","name_fr":"Calamar plat","name_darija":"صحن كالامار","category":"PlatsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-crevettes","name_fr":"Crevettes","name_darija":"كروفيت","category":"PlatsChauds","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"pilpil","name_fr":"Pilpil","name_darija":"كروفيت بيليلي","category":"PlatsChauds","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-fruits-mer","name_fr":"Fruits de mer","name_darija":"فواكه البحر","category":"PlatsChauds","base_price":70,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"poulet-pane","name_fr":"Poulet pané","name_darija":"دجاج باني","category":"PlatsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"emince-poulet","name_fr":"Émincé de poulet","name_darija":"إمينسي الدجاج","category":"PlatsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"escalope-dinde-poulet","name_fr":"Escalope de dinde et poulet","name_darija":"إسكالوب الدجاج والديك الرومي","category":"PlatsChauds","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"brochette-boeuf","name_fr":"Brochette de bœuf","name_darija":"قطبان اللحم","category":"PlatsChauds","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"foure-shawarma","name_fr":"Fouré au shawarma","name_darija":"فوري شاورما","category":"Foure","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"foure-viande","name_fr":"Fouré à la viande hachée","name_darija":"فوري كفتة","category":"Foure","base_price":35,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"foure-fruits-mer","name_fr":"Fouré aux fruits de mer","name_darija":"فوري فواكه البحر","category":"Foure","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"foure-mixte","name_fr":"Fouré mixte","name_darija":"فوري ميكس","category":"Foure","base_price":45,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"hamburger","name_fr":"Hamburger","name_darija":"هامبورغر","category":"Hamburgers","base_price":30,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"cheese-burger","name_fr":"Cheese Burger","name_darija":"تشيز برغر","category":"Hamburgers","base_price":32,"bread_options":[],"included":[{"name":"Viande hachée et fromage","name_darija":"كفتة وفرماج"}],"extras":[],"available":true},
+  {"id":"begges-burger","name_fr":"Begges Burger","name_darija":"بيغز برغر","category":"Hamburgers","base_price":32,"bread_options":[],"included":[{"name":"Viande hachée et œuf","name_darija":"كفتة وبيض"}],"extras":[],"available":true},
+  {"id":"chicken-burger","name_fr":"Hamburger Chicken","name_darija":"برغر الدجاج","category":"Hamburgers","base_price":35,"bread_options":[],"included":[{"name":"Poulet, fromage et frites","name_darija":"دجاج وفرماج وفريت"}],"extras":[],"available":true},
+  {"id":"king-burger","name_fr":"King Burger","name_darija":"كينغ برغر","category":"Hamburgers","base_price":35,"bread_options":[],"included":[{"name":"Viande hachée, œuf, fromage et frites","name_darija":"كفتة وبيض وفرماج وفريت"}],"extras":[],"available":true},
+  {"id":"geant-burger","name_fr":"Géant Burger","name_darija":"برغر عملاق","category":"Hamburgers","base_price":40,"bread_options":[],"included":[{"name":"Viande hachée et fromage","name_darija":"كفتة وفرماج"}],"extras":[],"available":true},
+  {"id":"double-hamburger","name_fr":"Double Hamburger","name_darija":"دوبل هامبورغر","category":"Hamburgers","base_price":55,"bread_options":[],"included":[{"name":"Viande hachée, frites et boisson","name_darija":"كفتة وفريت ومشروب"}],"extras":[],"available":true},
+  {"id":"duo-hamburgers","name_fr":"2 Hamburgers","name_darija":"2 هامبورغر","category":"Hamburgers","base_price":50,"bread_options":[],"included":[{"name":"Fish et kefta, frites et boisson","name_darija":"حوت وكفتة وفريت ومشروب"}],"extras":[],"available":true},
+
+  {"id":"tacos-shawarma","name_fr":"Tacos Shawarma","name_darija":"طاكوس شاورما","category":"Tacos","base_price":40,"bread_options":[{"name":"Taille L","name_darija":"حجم L"}],"included":[],"extras":[{"name":"Taille XL","name_darija":"حجم XL","price":20},{"name":"Gratiné Emmental","name_darija":"غراتان إمنتال","price":10},{"name":"Gratiné Cheddar","name_darija":"غراتان شيدر","price":10},{"name":"Gratiné Mozzarella","name_darija":"غراتان موزاريلا","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true,"featured":true},
+  {"id":"tacos-poulet","name_fr":"Tacos Poulet","name_darija":"طاكوس دجاج","category":"Tacos","base_price":40,"bread_options":[{"name":"Taille L","name_darija":"حجم L"}],"included":[],"extras":[{"name":"Taille XL","name_darija":"حجم XL","price":20},{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+  {"id":"tacos-viande","name_fr":"Tacos Viande hachée","name_darija":"طاكوس كفتة","category":"Tacos","base_price":40,"bread_options":[{"name":"Taille L","name_darija":"حجم L"}],"included":[],"extras":[{"name":"Taille XL","name_darija":"حجم XL","price":20},{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+  {"id":"tacos-cordon-bleu","name_fr":"Tacos Cordon Bleu","name_darija":"طاكوس كوردون بلو","category":"Tacos","base_price":40,"bread_options":[],"included":[],"extras":[{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+  {"id":"tacos-nuggets","name_fr":"Tacos Nuggets","name_darija":"طاكوس نوغيتس","category":"Tacos","base_price":40,"bread_options":[],"included":[],"extras":[{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+  {"id":"tacos-varietes","name_fr":"Tacos Variétés","name_darija":"طاكوس متنوع","category":"Tacos","base_price":45,"bread_options":[],"included":[],"extras":[{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+  {"id":"tacos-crevettes-calamar","name_fr":"Tacos Crevettes Calamar","name_darija":"طاكوس كروفيت كالامار","category":"Tacos","base_price":45,"bread_options":[],"included":[],"extras":[{"name":"Gratiné au choix","name_darija":"غراتان من اختيارك","price":10},{"name":"Menu frites + Coca","name_darija":"مينيو فريت + كوكا","price":12}],"available":true},
+
+  {"id":"plat-tortilla","name_fr":"Plat Tortilla","name_darija":"طبق تورتيلا","category":"PlatsSpeciaux","base_price":40,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-kefta","name_fr":"Plat Kefta","name_darija":"طبق كفتة","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-cerveau","name_fr":"Plat Cerveau","name_darija":"طبق مخ","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"brochette-saucisse","name_fr":"Brochette Saucisse","name_darija":"قطبان صوصيص","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-saucisse","name_fr":"Plat Saucisse","name_darija":"طبق صوصيص","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-shawarma","name_fr":"Plat Shawarma","name_darija":"طبق شاورما","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-viande","name_fr":"Plat Viande","name_darija":"طبق لحم","category":"PlatsSpeciaux","base_price":50,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-foie","name_fr":"Plat Foie","name_darija":"طبق كبدة","category":"PlatsSpeciaux","base_price":55,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-spada","name_fr":"Plat Spada","name_darija":"طبق سبادا","category":"PlatsSpeciaux","base_price":55,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"plat-gamba","name_fr":"Plat Gamba","name_darija":"طبق غامبا","category":"PlatsSpeciaux","base_price":60,"bread_options":[],"included":[],"extras":[],"available":true},
+
+  {"id":"eau","name_fr":"Eau minérale 50 cl","name_darija":"ماء معدني 50 سل","category":"Boissons","base_price":6,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"boisson-maxi","name_fr":"Boisson froide maxi","name_darija":"مشروب بارد كبير","category":"Boissons","base_price":8,"bread_options":[],"included":[],"extras":[],"available":true,"image":"/images/menu/soda.png"},
+  {"id":"boisson-mini","name_fr":"Boisson froide mini","name_darija":"مشروب بارد صغير","category":"Boissons","base_price":7,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"cafe","name_fr":"Café","name_darija":"قهوة","category":"Boissons","base_price":10,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"jus-orange","name_fr":"Jus d’orange","name_darija":"عصير البرتقال","category":"Boissons","base_price":15,"bread_options":[],"included":[],"extras":[],"available":true},
+  {"id":"jus-avocat","name_fr":"Jus d’avocat","name_darija":"عصير الأفوكادو","category":"Boissons","base_price":20,"bread_options":[],"included":[],"extras":[],"available":true,"image":"/images/menu/jus-avocat.png"},
+  {"id":"jus-panache","name_fr":"Jus Panaché","name_darija":"عصير باناشي","category":"Boissons","base_price":25,"bread_options":[],"included":[],"extras":[],"available":true}
 ]

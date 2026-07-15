@@ -2,7 +2,7 @@
 
 import { useDeferredValue, useMemo, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Search, X } from 'lucide-react'
+import { ArrowLeft, ChevronDown, LayoutGrid, Search, X } from 'lucide-react'
 import { BrandLogo } from '@/components/brand-logo'
 import { CartDrawer } from '@/components/cart-drawer'
 import { CustomizeSheet } from '@/components/customize-sheet'
@@ -19,6 +19,7 @@ function MenuContent() {
   const { t, categoryName, isRtl } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<MenuCategory>(MENU_CATEGORIES[0])
   const [customizing, setCustomizing] = useState<MenuItem | null>(null)
+  const [categoriesOpen, setCategoriesOpen] = useState(false)
   const [query, setQuery] = useState('')
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase())
 
@@ -44,9 +45,10 @@ function MenuContent() {
     [activeCategory, deferredQuery, items],
   )
 
-  function selectCategory(category: MenuCategory, button: HTMLButtonElement) {
+  function selectCategory(category: MenuCategory, button?: HTMLButtonElement) {
     setActiveCategory(category)
-    button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    setCategoriesOpen(false)
+    button?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
   }
 
   return (
@@ -89,7 +91,46 @@ function MenuContent() {
           ) : null}
         </div>
 
-        <nav className="scrollbar-none mx-auto flex max-w-6xl gap-2 overflow-x-auto px-4 py-3" aria-label={t('menu.categories')}>
+        <div className="mx-auto max-w-6xl px-4 py-3 md:hidden">
+          <button
+            type="button"
+            onClick={() => setCategoriesOpen((open) => !open)}
+            aria-expanded={categoriesOpen}
+            aria-controls="mobile-menu-categories"
+            className="flex min-h-12 w-full cursor-pointer items-center gap-3 rounded-2xl border border-border bg-card px-4 text-start shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+              <LayoutGrid className="size-5" aria-hidden="true" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground">{t('menu.categories')}</span>
+              <span className="block truncate font-display text-base font-bold">{categoryName(activeCategory)}</span>
+            </span>
+            <ChevronDown className={`size-5 shrink-0 text-muted-foreground transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+          </button>
+
+          {categoriesOpen ? (
+            <nav id="mobile-menu-categories" className="mt-2 grid grid-cols-2 gap-2 rounded-2xl border border-border bg-card p-2 shadow-lg" aria-label={t('menu.categories')}>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => selectCategory(category)}
+                  aria-pressed={activeCategory === category}
+                  className={`min-h-12 cursor-pointer rounded-xl px-3 text-start text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+                    activeCategory === category
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted text-foreground active:bg-accent'
+                  }`}
+                >
+                  {categoryName(category)}
+                </button>
+              ))}
+            </nav>
+          ) : null}
+        </div>
+
+        <nav className="scrollbar-none mx-auto hidden max-w-6xl gap-2 overflow-x-auto px-4 py-3 md:flex" aria-label={t('menu.categories')}>
           {categories.map((category) => (
             <button
               key={category}
@@ -117,7 +158,7 @@ function MenuContent() {
             </h2>
           </div>
           <span className="shrink-0 text-sm tabular-nums text-muted-foreground" aria-live="polite">
-            {t('menu.results', { count: filtered.length })}
+            {isLoading ? null : t('menu.results', { count: filtered.length })}
           </span>
         </div>
 

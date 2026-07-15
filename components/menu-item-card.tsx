@@ -17,19 +17,19 @@ export function MenuItemCard({ item, onCustomize }: MenuItemCardProps) {
   const description = item.included.map(ingredientName).join(' · ')
 
   return (
-    <article className="group flex h-full min-h-40 overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md">
+    <article className="group flex h-full min-h-40 flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-md min-[400px]:flex-row">
       {item.image ? (
         <img
           src={item.image}
           alt={name}
           width={320}
           height={320}
-          className="w-32 shrink-0 object-cover sm:w-36"
+          className="h-32 w-full shrink-0 object-cover min-[400px]:h-auto min-[400px]:w-32 sm:w-36"
           loading="lazy"
           decoding="async"
         />
       ) : (
-        <div className="flex w-3 shrink-0 bg-primary" aria-hidden="true" />
+        <div className="flex h-2 shrink-0 bg-primary min-[400px]:h-auto min-[400px]:w-3" aria-hidden="true" />
       )}
       <div className="flex min-w-0 flex-1 flex-col gap-3 p-4">
         <div className="flex items-start justify-between gap-3">

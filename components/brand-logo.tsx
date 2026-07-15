@@ -1,6 +1,3 @@
-const LOGO_SOURCE =
-  'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-07-13%20at%2020.59.04%20%282%29-kXymkQ9Md5notPK2kx0WXLm461pyeO.jpeg'
-
 interface BrandLogoProps {
   compact?: boolean
   inverted?: boolean
@@ -9,24 +6,29 @@ interface BrandLogoProps {
 export function BrandLogo({ compact = false, inverted = false }: BrandLogoProps) {
   return (
     <div
-      className={
-        compact
-          ? 'relative h-12 w-28 shrink-0 overflow-hidden'
-          : 'relative h-44 w-[min(82vw,26rem)] overflow-hidden sm:h-52'
-      }
+      className={`flex shrink-0 flex-col items-center font-display uppercase leading-none ${
+        compact ? 'w-20' : 'w-[min(78vw,24rem)]'
+      }`}
+      role="img"
+      aria-label="Maestro Fast Food"
+      dir="ltr"
     >
-      <img
-        src={LOGO_SOURCE}
-        alt="Maestro Fast Food"
-        width={1132}
-        height={1600}
-        className={`absolute left-1/2 max-w-none -translate-x-1/2 ${
-          compact
-            ? '-top-6 w-32'
-            : '-top-[9.2rem] w-[min(82vw,26rem)] sm:-top-[10.8rem]'
-        } ${inverted ? 'mix-blend-screen' : 'mix-blend-multiply'}`}
-        decoding="async"
-      />
+      <span
+        aria-hidden="true"
+        className={`font-black tracking-[-0.08em] ${
+          compact ? 'text-xl' : 'text-[clamp(3rem,15vw,5.5rem)]'
+        } ${inverted ? 'text-primary drop-shadow-[0_3px_1px_rgba(0,0,0,0.75)]' : 'text-primary'}`}
+      >
+        Maestro
+      </span>
+      <span
+        aria-hidden="true"
+        className={`flex w-full items-center font-black tracking-[0.32em] before:h-1 before:flex-1 before:bg-primary after:h-1 after:flex-1 after:bg-primary ${
+          compact ? 'gap-1.5 text-[0.55rem]' : 'gap-3 text-sm sm:text-base'
+        } ${inverted ? 'text-background drop-shadow-[0_2px_1px_rgba(0,0,0,0.9)]' : 'text-foreground'}`}
+      >
+        Fast Food
+      </span>
     </div>
   )
 }

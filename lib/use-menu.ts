@@ -1,6 +1,7 @@
 'use client'
 
 import useSWR from 'swr'
+import localMenu from '@/public/data/menu.json'
 import { LOCAL_MENU_URL, REMOTE_MENU_URL } from '@/lib/config'
 import type { Ingredient, MenuExtra, MenuItem } from '@/lib/types'
 
@@ -100,8 +101,11 @@ async function fetchMenu(): Promise<MenuItem[]> {
   return (data as any[]).map(normalize)
 }
 
+const fallbackMenu = (localMenu as any[]).map(normalize)
+
 export function useMenu() {
   const { data, error, isLoading } = useSWR<MenuItem[]>('menu', fetchMenu, {
+    fallbackData: fallbackMenu,
     revalidateOnFocus: false,
     refreshInterval: 60_000, // picks up owner's sheet edits within a minute, no reload needed
   })
@@ -110,6 +114,6 @@ export function useMenu() {
     items: available,
     featured: available.filter((item) => item.featured),
     error,
-    isLoading,
+    isLoading: isLoading && available.length === 0,
   }
 }

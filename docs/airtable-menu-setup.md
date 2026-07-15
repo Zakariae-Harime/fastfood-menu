@@ -69,8 +69,8 @@ Before changing Production, verify a Preview deployment:
 
 1. Open `/api/menu` and confirm it returns a non-empty JSON array with the Airtable item IDs.
 2. Open `/menu` and verify French and Darija names, prices, categories, images, options, and extras.
-3. Uncheck `available` on one test item, wait up to five minutes, refresh `/api/menu` and `/menu`, and confirm the item is hidden.
-4. Check `available` again and confirm the item returns after the cache refresh.
+3. Uncheck `available` on one test item, wait up to five minutes, and refresh `/api/menu`. Confirm the row remains in the response with `available: false`.
+4. Refresh `/menu` and confirm the unavailable item is hidden. Check `available` again and confirm the item returns to `/menu` after the cache refresh.
 
 ## 5. Daily editing
 

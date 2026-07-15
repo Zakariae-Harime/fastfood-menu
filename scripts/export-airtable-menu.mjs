@@ -23,13 +23,20 @@ const bilingual = (items = []) =>
 const extras = (items = []) =>
   items.map((item) => `${item.name} | ${item.name_darija} | ${item.price}`).join('\n')
 
+export function validateMenuItem(item, existingIds) {
+  const id = typeof item.id === 'string' ? item.id.trim() : ''
+  if (!id) throw new Error(`Invalid menu id: ${item.id}`)
+  if (existingIds.has(id)) throw new Error(`Duplicate menu id: ${id}`)
+  if (!String(item.name_fr ?? '').trim() || !String(item.name_darija ?? '').trim()) {
+    throw new Error(`Missing required menu name for id: ${id}`)
+  }
+  return id
+}
+
 if (!Array.isArray(menu)) throw new Error('Menu data must be an array')
 
 const rows = menu.map((item) => {
-  const id = typeof item.id === 'string' ? item.id.trim() : ''
-  if (!id || !item.name_fr || !item.name_darija || ids.has(id)) {
-    throw new Error(`Invalid or duplicate menu id: ${item.id}`)
-  }
+  const id = validateMenuItem(item, ids)
   ids.add(id)
   const record = {
     ...item,

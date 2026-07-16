@@ -1,8 +1,9 @@
 import { readFile, writeFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 const input = new URL('../public/data/menu.json', import.meta.url)
 const output = new URL('../docs/airtable-menu-template.csv', import.meta.url)
-const menu = JSON.parse(await readFile(input, 'utf8'))
 const columns = [
   'id',
   'name_fr',
@@ -16,7 +17,6 @@ const columns = [
   'bread_options',
   'extras',
 ]
-const ids = new Set()
 const quote = (value) => `"${String(value ?? '').replaceAll('"', '""')}"`
 const bilingual = (items = []) =>
   items.map((item) => `${item.name} | ${item.name_darija}`).join('\n')
@@ -33,20 +33,32 @@ export function validateMenuItem(item, existingIds) {
   return id
 }
 
-if (!Array.isArray(menu)) throw new Error('Menu data must be an array')
+export async function exportAirtableMenu() {
+  const menu = JSON.parse(await readFile(input, 'utf8'))
+  if (!Array.isArray(menu)) throw new Error('Menu data must be an array')
 
-const rows = menu.map((item) => {
-  const id = validateMenuItem(item, ids)
-  ids.add(id)
-  const record = {
-    ...item,
-    id,
-    included: bilingual(item.included),
-    bread_options: bilingual(item.bread_options),
-    extras: extras(item.extras),
-  }
-  return columns.map((column) => quote(record[column])).join(',')
-})
+  const ids = new Set()
+  const rows = menu.map((item) => {
+    const id = validateMenuItem(item, ids)
+    ids.add(id)
+    const record = {
+      ...item,
+      id,
+      included: bilingual(item.included),
+      bread_options: bilingual(item.bread_options),
+      extras: extras(item.extras),
+    }
+    return columns.map((column) => quote(record[column])).join(',')
+  })
 
-await writeFile(output, `${columns.map(quote).join(',')}\n${rows.join('\n')}\n`, 'utf8')
-console.log(`Wrote ${rows.length} Airtable menu rows`)
+  await writeFile(output, `${columns.map(quote).join(',')}\n${rows.join('\n')}\n`, 'utf8')
+  return rows.length
+}
+
+const entryPath = process.argv[1]
+const isDirectRun = entryPath && pathToFileURL(resolve(entryPath)).href === import.meta.url
+
+if (isDirectRun) {
+  const rowCount = await exportAirtableMenu()
+  console.log(`Wrote ${rowCount} Airtable menu rows`)
+}

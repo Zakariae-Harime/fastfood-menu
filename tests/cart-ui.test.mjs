@@ -14,6 +14,7 @@ test('cart drawer has compact sheet zones and focus recovery', async () => {
   assert.match(source, /cartButtonRef/)
   assert.match(source, /closeButtonRef/)
   assert.match(source, /requestAnimationFrame/)
+  assert.match(source, /lockPageScroll/)
 })
 
 test('fixed cart header shows a localized item count', async () => {

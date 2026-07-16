@@ -6,6 +6,7 @@ import { CartCustomerDetails } from '@/components/cart-customer-details'
 import { CartLineItem } from '@/components/cart-line-item'
 import { useCart } from '@/lib/cart-context'
 import { useLanguage } from '@/lib/language-context'
+import { lockPageScroll } from '@/lib/page-scroll-lock'
 import { formatPrice } from '@/lib/types'
 import { buildOrderMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
 
@@ -26,12 +27,16 @@ export function CartDrawer() {
 
   useEffect(() => {
     if (!open) return
+    const unlockPageScroll = lockPageScroll()
     closeButtonRef.current?.focus()
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') closeCart()
     }
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      unlockPageScroll()
+    }
   }, [open, closeCart])
 
   const handleOrder = () => window.open(
@@ -59,7 +64,7 @@ export function CartDrawer() {
       ) : null}
 
       {open ? (
-        <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div className="fixed inset-0 z-50 overscroll-none" role="dialog" aria-modal="true" aria-labelledby="cart-title">
           <button type="button" className="absolute inset-0 bg-black/50" onClick={closeCart} aria-label={t('cart.close')} />
           <div className="absolute inset-x-0 bottom-0 flex max-h-[88dvh] flex-col rounded-t-3xl bg-card shadow-2xl">
             <header className="flex shrink-0 items-center justify-between border-b border-border px-4 py-3">

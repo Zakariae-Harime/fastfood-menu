@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import localMenu from '@/public/data/menu.json'
+import { normalizeMenuRecords } from '@/lib/menu-normalize'
 
 // Cache Airtable responses at the server/edge for 5 minutes. This is the
 // real lever against Airtable's free-tier limit of 1,000 API calls/month:
@@ -10,13 +11,14 @@ import localMenu from '@/public/data/menu.json'
 export const revalidate = 300
 
 const AIRTABLE_TABLE_NAME = 'Menu'
+const fallbackMenu = normalizeMenuRecords(localMenu)
 
 export async function GET() {
   const token = process.env.AIRTABLE_TOKEN
   const baseId = process.env.AIRTABLE_BASE_ID
 
   if (!token || !baseId) {
-    return NextResponse.json(localMenu)
+    return NextResponse.json(fallbackMenu)
   }
 
   try {
@@ -37,16 +39,16 @@ export async function GET() {
 
       const data = await res.json()
       // Flatten Airtable's { id, fields: {...} } record shape into a plain
-      // object so the existing normalize() logic in lib/use-menu.ts (which
-      // already handles both arrays and comma/semicolon strings) works
-      // completely unchanged. The row's own "id" field (if filled in)
-      // wins over Airtable's internal record id.
+      // object for the shared menu normalizer. The row's own "id" field
+      // (if filled in) wins over Airtable's internal record id.
       items.push(...data.records.map((r: any) => ({ id: r.id, ...r.fields })))
       offset = data.offset
     } while (offset)
 
-    return NextResponse.json(items)
+    const normalizedItems = normalizeMenuRecords(items)
+    return NextResponse.json(normalizedItems.length > 0 ? normalizedItems : fallbackMenu)
   } catch {
-    return NextResponse.json(localMenu)
+    console.warn('[menu] Airtable unavailable; using local fallback')
+    return NextResponse.json(fallbackMenu)
   }
 }

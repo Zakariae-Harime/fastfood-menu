@@ -5,22 +5,14 @@ import { useEffect, useRef, useState } from 'react'
 const HERO_ALT = 'Chef de Snack Maestro preparant un bocadillo derriere le comptoir'
 
 /**
- * Keeps the poster as the stable hero background, then fades the video in
- * only after the browser confirms playback. On iOS, blocked autoplay otherwise
- * exposes a native play button over the hero.
+ * Renders the video in the initial markup so mobile Safari can start loading
+ * it immediately. The poster sits above it until playback is confirmed.
  */
 export function HeroVideo() {
-  const [mounted, setMounted] = useState(false)
   const [videoPlaying, setVideoPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (!mounted) return
-
     const video = videoRef.current
     if (!video) return
 
@@ -32,33 +24,33 @@ export function HeroVideo() {
     video.setAttribute('webkit-playsinline', '')
 
     video.play().catch(() => setVideoPlaying(false))
-  }, [mounted])
+  }, [])
 
   return (
     <>
+      <video
+        ref={videoRef}
+        src="/videos/hero.mp4"
+        poster="/images/hero.png"
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls={false}
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
+        preload="auto"
+        onPlaying={() => setVideoPlaying(true)}
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        aria-hidden="true"
+        tabIndex={-1}
+      />
       <img
         src="/images/hero.png"
         alt={HERO_ALT}
-        className="absolute inset-0 h-full w-full object-cover"
+        fetchPriority="high"
+        className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${videoPlaying ? 'opacity-0' : 'opacity-100'}`}
       />
-      {mounted ? (
-        <video
-          ref={videoRef}
-          src="/videos/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          controls={false}
-          disablePictureInPicture
-          controlsList="nodownload nofullscreen noremoteplayback"
-          preload="auto"
-          onPlaying={() => setVideoPlaying(true)}
-          className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${videoPlaying ? 'opacity-100' : 'opacity-0'}`}
-          aria-hidden="true"
-          tabIndex={-1}
-        />
-      ) : null}
     </>
   )
 }

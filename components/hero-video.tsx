@@ -1,52 +1,64 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const HERO_ALT = 'Chef de Snack Maestro preparant un bocadillo derriere le comptoir'
 
 /**
- * Renders the hero video only after the client has mounted.
- * Video-related browser extensions (e.g. Ultrawidify) inject DOM nodes
- * next to <video> elements as soon as they appear in the HTML, which
- * breaks React hydration if the video is server-rendered. By mounting
- * the video post-hydration, the extension can only act after React is
- * in control, eliminating the mismatch. The poster image is shown as
- * the SSR fallback so there is no visual gap.
+ * Keeps the poster as the stable hero background, then fades the video in
+ * only after the browser confirms playback. On iOS, blocked autoplay otherwise
+ * exposes a native play button over the hero.
  */
 export function HeroVideo() {
   const [mounted, setMounted] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  if (!mounted) {
-    return (
-      <img
-        src="/images/hero.png"
-        alt="Chef de Snack Maestro préparant un bocadillo derrière le comptoir"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-    )
-  }
+  useEffect(() => {
+    if (!mounted) return
+
+    const video = videoRef.current
+    if (!video) return
+
+    video.muted = true
+    video.defaultMuted = true
+    video.volume = 0
+    video.controls = false
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+
+    video.play().catch(() => setVideoPlaying(false))
+  }, [mounted])
 
   return (
-    <video
-      ref={(el) => {
-        // React does not always reflect the `muted` prop onto the DOM
-        // attribute; set it imperatively to guarantee no audio plays.
-        if (el) {
-          el.muted = true
-          el.defaultMuted = true
-          el.volume = 0
-        }
-      }}
-      src="/videos/hero.mp4"
-      poster="/images/hero.png"
-      autoPlay
-      muted
-      loop
-      playsInline
-      className="absolute inset-0 h-full w-full object-cover"
-      aria-label="Chef de Snack Maestro préparant un bocadillo derrière le comptoir"
-    />
+    <>
+      <img
+        src="/images/hero.png"
+        alt={HERO_ALT}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {mounted ? (
+        <video
+          ref={videoRef}
+          src="/videos/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={false}
+          disablePictureInPicture
+          controlsList="nodownload nofullscreen noremoteplayback"
+          preload="auto"
+          onPlaying={() => setVideoPlaying(true)}
+          className={`pointer-events-none absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${videoPlaying ? 'opacity-100' : 'opacity-0'}`}
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+      ) : null}
+    </>
   )
 }

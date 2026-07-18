@@ -16,7 +16,8 @@ async function fetchReviews(url: string): Promise<CustomerReview[]> {
 export function useReviews() {
   const { data } = useSWR('/api/reviews', fetchReviews, {
     refreshInterval: 300_000,
-    revalidateOnFocus: false,
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
     shouldRetryOnError: false,
   })
 

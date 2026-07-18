@@ -1,7 +1,10 @@
 import { NextResponse } from 'next/server'
 import { normalizeReviews } from '@/lib/reviews'
 
-export const revalidate = 300
+// Reviews are edited infrequently and fetched by the client every five minutes.
+// Keep this route dynamic so an empty or old Airtable response is never stored
+// in Next.js's route/data cache across deployments.
+export const dynamic = 'force-dynamic'
 
 const AIRTABLE_TABLE_NAME = 'Reviews'
 
@@ -28,7 +31,7 @@ export async function GET() {
 
     const response = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
-      next: { revalidate: 300 },
+      cache: 'no-store',
     })
     if (!response.ok) throw new Error(`Airtable responded ${response.status}`)
 
@@ -38,7 +41,9 @@ export async function GET() {
       ...record.fields,
     }))
 
-    return NextResponse.json(normalizeReviews(records))
+    return NextResponse.json(normalizeReviews(records), {
+      headers: { 'Cache-Control': 'no-store, max-age=0' },
+    })
   } catch {
     console.warn('[reviews] Airtable unavailable; hiding customer reviews')
     return NextResponse.json([])

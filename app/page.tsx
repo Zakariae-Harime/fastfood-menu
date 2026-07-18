@@ -7,6 +7,7 @@ import { HeroVideo } from '@/components/hero-video'
 import { LanguageToggle } from '@/components/language-toggle'
 import { LocationMap } from '@/components/location-map'
 import { QrCard } from '@/components/qr-card'
+import { ReviewsSection } from '@/components/reviews-section'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { SpecialtiesGrid } from '@/components/specialties-grid'
 import { SHOP_INFO } from '@/lib/config'
@@ -86,6 +87,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection />
 
       <section className="px-6 py-16" aria-labelledby="contact-title">
         <div className="mx-auto max-w-5xl">

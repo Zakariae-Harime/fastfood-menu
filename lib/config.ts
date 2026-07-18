@@ -37,5 +37,5 @@ export const SHOP_INFO = {
     'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
 }
 
-// Direct link to Google Maps reviews — search by name + location to ensure reliable routing to reviews tab
-export const GOOGLE_REVIEW_URL = 'https://www.google.com/maps/search/Snack+Maestro+Tanger/#/reviews'
+// Direct link to Google Maps reviews tab using the reliable shortened URL with query params
+export const GOOGLE_REVIEW_URL = 'https://maps.app.goo.gl/x6LtTPYBETDf544X9?g_place_id=0xd0c798775f0a55d:0x1599adb0d760c29f&tab=reviews'

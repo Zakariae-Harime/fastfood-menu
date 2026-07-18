@@ -14,9 +14,9 @@ export const REMOTE_MENU_URL = '/api/menu'
 // Local fallback served from /public/data/menu.json
 export const LOCAL_MENU_URL = '/data/menu.json'
 
-// Find the restaurant's Place ID at https://developers.google.com/maps/documentation/places/web-service/place-id
-// and replace this placeholder to link directly to Google's review composer.
-export const GOOGLE_PLACE_ID = 'REPLACE_WITH_GOOGLE_PLACE_ID'
+// Google Place ID for Snack Maestro, Tangier
+// Links directly to Google's review composer
+export const GOOGLE_PLACE_ID = 'ChIJXaXwdYd5DA0Rn8Jg17CtmRUQ5JM+9JW'
 
 export const SHOP_INFO = {
   name: 'Snack Maestro',

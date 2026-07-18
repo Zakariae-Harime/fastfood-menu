@@ -36,5 +36,5 @@ export const SHOP_INFO = {
     'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
 }
 
-// Opens Google's review composer for this exact business instead of its overview tab.
-export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE_ID}`
+// Opens the Reviews section for this exact business instead of its Overview tab.
+export const GOOGLE_REVIEW_URL = `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`

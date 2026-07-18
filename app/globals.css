@@ -191,9 +191,9 @@ html {
 }
 
 .menu-loading-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: min(78vw, 27rem);
+  height: auto;
+  object-fit: contain;
   animation: menu-loading-logo 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 

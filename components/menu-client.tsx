@@ -56,9 +56,12 @@ function MenuContent() {
         role="status"
         aria-label="Chargement du menu Maestro"
       >
-        <div className="menu-loading-logo">
-          <BrandLogo />
-        </div>
+        <img
+          src="/maestro-loading-logo.png"
+          alt="Maestro Fast Food"
+          className="menu-loading-logo"
+          fetchPriority="high"
+        />
         <span className="sr-only">Chargement du menu…</span>
       </div>
 

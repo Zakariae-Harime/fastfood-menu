@@ -39,4 +39,4 @@ export const SHOP_INFO = {
 
 export const GOOGLE_REVIEW_URL = GOOGLE_PLACE_ID.startsWith('REPLACE_')
   ? SHOP_INFO.mapsUrl
-  : `https://search.google.com/local/writereview?placeid=${encodeURIComponent(GOOGLE_PLACE_ID)}`
+  : `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}#/reviews`

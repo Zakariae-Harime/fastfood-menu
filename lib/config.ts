@@ -14,6 +14,10 @@ export const REMOTE_MENU_URL = '/api/menu'
 // Local fallback served from /public/data/menu.json
 export const LOCAL_MENU_URL = '/data/menu.json'
 
+// Find the restaurant's Place ID at https://developers.google.com/maps/documentation/places/web-service/place-id
+// and replace this placeholder to link directly to Google's review composer.
+export const GOOGLE_PLACE_ID = 'REPLACE_WITH_GOOGLE_PLACE_ID'
+
 export const SHOP_INFO = {
   name: 'Snack Maestro',
   tagline: 'Fast Food • Tanger',
@@ -32,3 +36,7 @@ export const SHOP_INFO = {
   mapEmbedUrl:
     'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
 }
+
+export const GOOGLE_REVIEW_URL = GOOGLE_PLACE_ID.startsWith('REPLACE_')
+  ? SHOP_INFO.mapsUrl
+  : `https://search.google.com/local/writereview?placeid=${encodeURIComponent(GOOGLE_PLACE_ID)}`

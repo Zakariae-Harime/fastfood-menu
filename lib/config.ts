@@ -38,3 +38,8 @@ export const SHOP_INFO = {
 
 // Opens the Reviews section for this exact business instead of its Overview tab.
 export const GOOGLE_REVIEW_URL = `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`
+
+// Mobile deep links prefer the installed Google Maps app. The review URL above
+// remains the browser fallback when Maps is unavailable.
+export const GOOGLE_MAPS_IOS_REVIEW_URL = `comgooglemaps://?q=${encodeURIComponent(SHOP_INFO.name)}&center=${SHOP_INFO.coordinates.latitude},${SHOP_INFO.coordinates.longitude}`
+export const GOOGLE_MAPS_ANDROID_REVIEW_URL = `intent://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}#Intent;scheme=https;package=com.google.android.apps.maps;S.browser_fallback_url=${encodeURIComponent(GOOGLE_REVIEW_URL)};end`

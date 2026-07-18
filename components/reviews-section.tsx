@@ -2,7 +2,11 @@
 
 import { ExternalLink, Star } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
-import { GOOGLE_REVIEW_URL } from '@/lib/config'
+import {
+  GOOGLE_MAPS_ANDROID_REVIEW_URL,
+  GOOGLE_MAPS_IOS_REVIEW_URL,
+  GOOGLE_REVIEW_URL,
+} from '@/lib/config'
 import { useLanguage } from '@/lib/language-context'
 import { useReviews } from '@/lib/use-reviews'
 
@@ -23,6 +27,34 @@ function Rating({ rating, label }: { rating: number; label: string }) {
 export function ReviewsSection() {
   const reviews = useReviews()
   const { t } = useLanguage()
+
+  function openGoogleReview(event: React.MouseEvent<HTMLAnchorElement>) {
+    const userAgent = window.navigator.userAgent
+    const isAndroid = /Android/i.test(userAgent)
+    const isIOS = /iPhone|iPad|iPod/i.test(userAgent)
+
+    if (!isAndroid && !isIOS) return
+
+    event.preventDefault()
+
+    if (isAndroid) {
+      window.location.href = GOOGLE_MAPS_ANDROID_REVIEW_URL
+      return
+    }
+
+    let appOpened = false
+    const markAppOpened = () => {
+      if (document.hidden) appOpened = true
+    }
+
+    document.addEventListener('visibilitychange', markAppOpened)
+    window.location.href = GOOGLE_MAPS_IOS_REVIEW_URL
+
+    window.setTimeout(() => {
+      document.removeEventListener('visibilitychange', markAppOpened)
+      if (!appOpened && !document.hidden) window.location.href = GOOGLE_REVIEW_URL
+    }, 1200)
+  }
 
   return (
     <section className="px-6 py-16" aria-labelledby="reviews-title">
@@ -65,6 +97,7 @@ export function ReviewsSection() {
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={openGoogleReview}
             className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 text-center font-bold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]"
           >
             {t('reviews.cta')}

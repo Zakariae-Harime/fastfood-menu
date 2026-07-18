@@ -48,19 +48,28 @@ export function CartDrawer() {
   return (
     <>
       {itemCount > 0 && !open ? (
-        <button
-          ref={cartButtonRef}
-          type="button"
-          onClick={() => setOpen(true)}
-          className="fixed bottom-5 end-5 z-40 flex min-h-14 items-center gap-3 rounded-full bg-foreground px-5 text-background shadow-xl transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          aria-label={t('cart.open', { count: itemCount, total: formatPrice(total) })}
-        >
-          <span className="relative">
-            <ShoppingBag className="size-6" aria-hidden="true" />
-            <span className="absolute -end-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground" dir="ltr">{itemCount}</span>
-          </span>
-          <span className="font-display text-base font-bold" dir="ltr">{formatPrice(total)}</span>
-        </button>
+        <div className="fixed inset-x-4 bottom-5 z-40 flex items-center justify-end gap-2 sm:inset-x-auto sm:end-5">
+          <button
+            type="button"
+            onClick={handleOrder}
+            className="flex min-h-14 flex-1 items-center justify-center rounded-full bg-whatsapp px-5 font-display text-sm font-bold text-whatsapp-foreground shadow-xl transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-none sm:text-base"
+          >
+            {t('cart.quickOrder')}
+          </button>
+          <button
+            ref={cartButtonRef}
+            type="button"
+            onClick={() => setOpen(true)}
+            className="flex min-h-14 shrink-0 items-center gap-3 rounded-full bg-foreground px-5 text-background shadow-xl transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            aria-label={t('cart.open', { count: itemCount, total: formatPrice(total) })}
+          >
+            <span className="relative">
+              <ShoppingBag className="size-6" aria-hidden="true" />
+              <span className="absolute -end-2 -top-2 flex size-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground" dir="ltr">{itemCount}</span>
+            </span>
+            <span className="font-display text-base font-bold" dir="ltr">{formatPrice(total)}</span>
+          </button>
+        </div>
       ) : null}
 
       {open ? (

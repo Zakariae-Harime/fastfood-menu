@@ -17,6 +17,9 @@ export const LOCAL_MENU_URL = '/data/menu.json'
 // Google Place ID for Snack Maestro, Tangier
 export const GOOGLE_PLACE_ID = 'ChIJXaXwdYd5DA0Rn8Jg17CtmRU'
 
+// Opens Google's review composer for this exact business instead of Maps Overview.
+export const GOOGLE_REVIEW_URL = `https://search.google.com/local/writereview?placeid=${GOOGLE_PLACE_ID}`
+
 export const SHOP_INFO = {
   name: 'Snack Maestro',
   tagline: 'Fast Food • Tanger',

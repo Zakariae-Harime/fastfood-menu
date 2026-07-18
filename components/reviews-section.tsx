@@ -2,7 +2,7 @@
 
 import { ExternalLink, Star } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
-import { SHOP_INFO } from '@/lib/config'
+import { GOOGLE_REVIEW_URL } from '@/lib/config'
 import { useLanguage } from '@/lib/language-context'
 import { useReviews } from '@/lib/use-reviews'
 
@@ -62,7 +62,7 @@ export function ReviewsSection() {
 
         <ScrollReveal delay={120} className={reviews.length > 0 ? 'mt-6' : 'mt-8'}>
           <a
-            href={SHOP_INFO.mapsUrl}
+            href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-full bg-primary px-6 text-center font-bold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.99]"

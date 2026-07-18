@@ -37,6 +37,5 @@ export const SHOP_INFO = {
     'https://www.google.com/maps?q=35.7809773,-5.8159282&z=16&output=embed',
 }
 
-export const GOOGLE_REVIEW_URL = GOOGLE_PLACE_ID.startsWith('REPLACE_')
-  ? SHOP_INFO.mapsUrl
-  : `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}#/reviews`
+// Use the working Google Maps link for reviews and location
+export const GOOGLE_REVIEW_URL = SHOP_INFO.mapsUrl

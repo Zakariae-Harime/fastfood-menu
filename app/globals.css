@@ -148,6 +148,68 @@ html {
   }
 }
 
+/* Menu brand loading screen */
+@keyframes menu-loading-screen {
+  0%,
+  72% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes menu-loading-logo {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  38%,
+  76% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+}
+
+.menu-loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--card);
+  animation: menu-loading-screen 1.8s ease-out both;
+}
+
+.menu-loading-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  animation: menu-loading-logo 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-loading-screen {
+    opacity: 0;
+    visibility: hidden;
+    animation: none;
+  }
+
+  .menu-loading-logo {
+    animation: none;
+  }
+}
+
 /* Global interactive transitions */
 a,
 button {

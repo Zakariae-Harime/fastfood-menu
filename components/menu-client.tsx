@@ -57,7 +57,7 @@ function MenuContent() {
         aria-label="Chargement du menu Maestro"
       >
         <img
-          src="/maestro-loading.png"
+          src="/maestro-loading.jpeg"
           alt="Maestro Fast Food"
           className="menu-loading-logo"
           fetchPriority="high"

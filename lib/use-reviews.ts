@@ -1,13 +1,13 @@
 'use client'
 
 import useSWR from 'swr'
-import { normalizeReviews, type CustomerReview } from '@/lib/reviews'
+import type { CustomerReview } from '@/lib/reviews'
 
 async function fetchReviews(url: string): Promise<CustomerReview[]> {
   try {
     const response = await fetch(url)
     if (!response.ok) return []
-    return normalizeReviews(await response.json())
+    return await response.json()
   } catch {
     return []
   }

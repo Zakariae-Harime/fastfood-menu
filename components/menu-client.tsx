@@ -50,8 +50,23 @@ function MenuContent() {
   }
 
   return (
-    <main className="min-h-dvh pb-28">
-      <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur-sm">
+    <>
+      <div
+        className="menu-loading-screen"
+        role="status"
+        aria-label="Chargement du menu Maestro"
+      >
+        <img
+          src="/maestro-loading.jpeg"
+          alt="Maestro Fast Food"
+          className="menu-loading-logo"
+          fetchPriority="high"
+        />
+        <span className="sr-only">Chargement du menu…</span>
+      </div>
+
+      <main className="min-h-dvh pb-28">
+        <header className="sticky top-0 z-30 border-b border-border bg-background/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 pt-2 sm:pt-3">
           <Link
             href="/"
@@ -142,9 +157,10 @@ function MenuContent() {
         ) : null}
       </section>
 
-      <CustomizeSheet item={customizing} onClose={() => setCustomizing(null)} />
-      <CartDrawer />
-    </main>
+        <CustomizeSheet item={customizing} onClose={() => setCustomizing(null)} />
+        <CartDrawer />
+      </main>
+    </>
   )
 }
 

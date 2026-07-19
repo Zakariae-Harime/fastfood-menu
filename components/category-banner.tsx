@@ -8,10 +8,12 @@ interface CategoryBannerProps {
 }
 
 const categoryImageOverrides: Partial<Record<MenuCategory, string>> = {
-  SandwichsFrais: 'https://i.pinimg.com/736x/eb/be/11/ebbe112c09ddd5379900887a40df1ba8.jpg',
-  Tagine: 'https://i.pinimg.com/736x/5d/05/3d/5d053d0928743bad264604bbfb4d721c.jpg',
-  Pasticcio: 'https://i.pinimg.com/736x/26/e8/34/26e834b12d594e39ba1ad7142f61970a.jpg',
-  Tacos: 'https://images.unsplash.com/photo-1613319300745-88bc37cceccf?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200',
+  Pizza: '/images/categories/Pizza.png',
+  SandwichsFrais: 'https://i.pinimg.com/originals/eb/be/11/ebbe112c09ddd5379900887a40df1ba8.jpg',
+  SandwichsChauds: '/images/categories/SandwichsChauds.png',
+  Tagine: 'https://i.pinimg.com/originals/5d/05/3d/5d053d0928743bad264604bbfb4d721c.jpg',
+  Pasticcio: 'https://i.pinimg.com/originals/26/e8/34/26e834b12d594e39ba1ad7142f61970a.jpg',
+  Tacos: 'https://images.unsplash.com/photo-1613319300745-88bc37cceccf?ixlib=rb-4.1.0&q=90&fm=jpg&crop=entropy&cs=srgb&w=1800',
 }
 
 export function CategoryBanner({ category }: CategoryBannerProps) {

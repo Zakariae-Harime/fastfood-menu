@@ -10,10 +10,14 @@ import { lockPageScroll } from '@/lib/page-scroll-lock'
 import { formatPrice } from '@/lib/types'
 import { buildOrderMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
 
-export function CartDrawer() {
+interface CartDrawerProps {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+export function CartDrawer({ open, onOpenChange }: CartDrawerProps) {
   const { lines, updateQuantity, removeLine, itemCount, total } = useCart()
   const { t, language } = useLanguage()
-  const [open, setOpen] = useState(false)
   const [customerName, setCustomerName] = useState('')
   const [customerNote, setCustomerNote] = useState('')
   const [mode, setMode] = useState<'sur-place' | 'a-emporter'>('a-emporter')
@@ -21,9 +25,9 @@ export function CartDrawer() {
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   const closeCart = useCallback(() => {
-    setOpen(false)
+    onOpenChange(false)
     requestAnimationFrame(() => cartButtonRef.current?.focus())
-  }, [])
+  }, [onOpenChange])
 
   useEffect(() => {
     if (!open) return
@@ -52,7 +56,7 @@ export function CartDrawer() {
           <button
             ref={cartButtonRef}
             type="button"
-            onClick={() => setOpen(true)}
+            onClick={() => onOpenChange(true)}
             className="flex min-h-14 shrink-0 items-center gap-3 rounded-full bg-foreground px-5 text-background shadow-xl transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             aria-label={t('cart.open', { count: itemCount, total: formatPrice(total) })}
           >

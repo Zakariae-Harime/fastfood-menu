@@ -12,7 +12,7 @@ interface CartContextValue {
     extras: MenuExtra[],
     ingredients: IngredientChoice[],
     quantity: number,
-  ) => void
+  ) => CartLine
   updateQuantity: (uid: string, quantity: number) => void
   removeLine: (uid: string) => void
   clearCart: () => void
@@ -27,17 +27,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addLine = useCallback<CartContextValue['addLine']>(
     (item, bread, extras, ingredients, quantity) => {
-      setLines((prev) => [
-        ...prev,
-        {
-          uid: `${item.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-          item,
-          bread,
-          extras,
-          ingredients,
-          quantity,
-        },
-      ])
+      const line: CartLine = {
+        uid: `${item.id}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+        item,
+        bread,
+        extras,
+        ingredients,
+        quantity,
+      }
+      setLines((prev) => [...prev, line])
+      return line
     },
     [],
   )

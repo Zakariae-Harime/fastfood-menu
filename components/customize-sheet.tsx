@@ -6,12 +6,13 @@ import { useCart } from '@/lib/cart-context'
 import { useLanguage } from '@/lib/language-context'
 import type { Ingredient, IngredientChoice, MenuExtra, MenuItem } from '@/lib/types'
 import { formatPrice } from '@/lib/types'
+import { buildOrderMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
 
 interface CustomizeSheetProps { item: MenuItem | null; onClose: () => void }
 
 export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
-  const { addLine } = useCart()
-  const { t, itemName, ingredientName } = useLanguage()
+  const { addLine, lines } = useCart()
+  const { t, itemName, ingredientName, language } = useLanguage()
   const [bread, setBread] = useState<Ingredient | null>(null)
   const [selectedExtras, setSelectedExtras] = useState<MenuExtra[]>([])
   const [ingredientQty, setIngredientQty] = useState<Record<string, number>>({})
@@ -32,9 +33,21 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
   const subtotal = (item.base_price + selectedExtras.reduce((sum, extra) => sum + extra.price, 0)) * quantity
   const toggleExtra = (extra: MenuExtra) => setSelectedExtras((current) => current.some((entry) => entry.name === extra.name) ? current.filter((entry) => entry.name !== extra.name) : [...current, extra])
   const setIngredient = (ingredient: string, next: number) => setIngredientQty((current) => ({ ...current, [ingredient]: Math.max(0, Math.min(5, next)) }))
-  const handleAdd = () => {
+  const addCurrentItem = () => {
     const ingredients: IngredientChoice[] = item.included.map((ingredient) => ({ ingredient, quantity: ingredientQty[ingredient.name] ?? 1 })).filter((choice) => choice.quantity !== 1)
-    addLine(item, bread, selectedExtras, ingredients, quantity)
+    return addLine(item, bread, selectedExtras, ingredients, quantity)
+  }
+  const handleAdd = () => {
+    addCurrentItem()
+    onClose()
+  }
+  const handleOrder = () => {
+    const addedLine = addCurrentItem()
+    window.open(
+      buildWhatsAppUrl(buildOrderMessage([...lines, addedLine], '', 'a-emporter', language, '')),
+      '_blank',
+      'noopener,noreferrer',
+    )
     onClose()
   }
 
@@ -55,7 +68,15 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
 
           <div className="flex items-center justify-between"><span className="font-display text-base font-bold text-card-foreground">{t('customize.quantity')}</span><div className="flex items-center gap-3" dir="ltr"><button type="button" onClick={() => setQuantity((current) => Math.max(1, current - 1))} className="flex size-11 items-center justify-center rounded-full bg-muted text-foreground disabled:opacity-40" disabled={quantity <= 1} aria-label={t('customize.decreaseQuantity')}><Minus className="size-5" aria-hidden="true" /></button><span className="w-8 text-center font-display text-xl font-bold" aria-live="polite">{quantity}</span><button type="button" onClick={() => setQuantity((current) => current + 1)} className="flex size-11 items-center justify-center rounded-full bg-muted text-foreground" aria-label={t('customize.increaseQuantity')}><Plus className="size-5" aria-hidden="true" /></button></div></div>
         </div>
-        <div className="border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]"><button type="button" onClick={handleAdd} className="flex min-h-14 w-full items-center justify-between rounded-full bg-primary px-6 font-bold text-primary-foreground transition-transform active:scale-[0.98]"><span>{t('customize.addCart')}</span><span className="font-display text-lg" dir="ltr" aria-live="polite">{formatPrice(subtotal)}</span></button></div>
+        <div className="flex gap-2 border-t border-border p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+          <button type="button" onClick={handleAdd} className="flex min-h-14 min-w-0 flex-1 flex-col items-center justify-center rounded-full bg-primary px-3 font-bold text-primary-foreground transition-transform active:scale-[0.98]">
+            <span className="text-sm leading-tight">{t('customize.addCart')}</span>
+            <span className="font-display text-sm leading-tight" dir="ltr" aria-live="polite">{formatPrice(subtotal)}</span>
+          </button>
+          <button type="button" onClick={handleOrder} className="flex min-h-14 min-w-0 flex-1 items-center justify-center rounded-full bg-whatsapp px-3 text-center text-sm font-bold leading-tight text-whatsapp-foreground transition-transform active:scale-[0.98]">
+            {t('cart.quickOrder')}
+          </button>
+        </div>
       </div>
     </div>
   )

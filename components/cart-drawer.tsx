@@ -48,14 +48,7 @@ export function CartDrawer() {
   return (
     <>
       {itemCount > 0 && !open ? (
-        <div className="fixed inset-x-4 bottom-5 z-40 flex items-center justify-end gap-2 sm:inset-x-auto sm:end-5">
-          <button
-            type="button"
-            onClick={handleOrder}
-            className="flex min-h-14 flex-1 items-center justify-center rounded-full bg-whatsapp px-5 font-display text-sm font-bold text-whatsapp-foreground shadow-xl transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:flex-none sm:text-base"
-          >
-            {t('cart.quickOrder')}
-          </button>
+        <div className="fixed inset-x-4 bottom-5 z-40 flex items-center justify-end sm:inset-x-auto sm:end-5">
           <button
             ref={cartButtonRef}
             type="button"

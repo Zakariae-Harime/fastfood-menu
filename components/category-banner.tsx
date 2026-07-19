@@ -9,6 +9,11 @@ interface CategoryBannerProps {
 
 const categoryImageOverrides: Partial<Record<MenuCategory, string>> = {
   Pizza: '/images/categories/Pizza.png',
+  Panini: '/images/categories/Panini.png',
+  Shawarma: '/images/categories/Shawarma.png',
+  Foure: '/images/categories/Foure.png',
+  Hamburgers: '/images/categories/Burger.png',
+  PlatsSpeciaux: '/images/categories/PlatSpecial.png',
   SandwichsFrais: 'https://i.pinimg.com/originals/eb/be/11/ebbe112c09ddd5379900887a40df1ba8.jpg',
   SandwichsChauds: '/images/categories/SandwichsChauds.png',
   Tagine: 'https://i.pinimg.com/originals/5d/05/3d/5d053d0928743bad264604bbfb4d721c.jpg',

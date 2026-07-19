@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Search, X } from 'lucide-react'
 import { BrandLogo } from '@/components/brand-logo'
 import { CartDrawer } from '@/components/cart-drawer'
+import { CategoryBanner } from '@/components/category-banner'
 import { CustomizeSheet } from '@/components/customize-sheet'
 import { LanguageToggle } from '@/components/language-toggle'
 import { MenuItemCard } from '@/components/menu-item-card'
@@ -136,6 +137,8 @@ function MenuContent() {
             {isLoading ? null : t('menu.results', { count: filtered.length })}
           </span>
         </div>
+
+        <CategoryBanner key={activeCategory} category={activeCategory} />
 
         {isLoading ? (
           <div className="flex flex-col gap-3 sm:grid sm:grid-cols-2 sm:gap-4 lg:grid-cols-3" aria-label={t('menu.title')}>

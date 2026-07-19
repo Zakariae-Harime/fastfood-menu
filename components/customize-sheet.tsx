@@ -6,13 +6,16 @@ import { useCart } from '@/lib/cart-context'
 import { useLanguage } from '@/lib/language-context'
 import type { Ingredient, IngredientChoice, MenuExtra, MenuItem } from '@/lib/types'
 import { formatPrice } from '@/lib/types'
-import { buildOrderMessage, buildWhatsAppUrl } from '@/lib/whatsapp'
 
-interface CustomizeSheetProps { item: MenuItem | null; onClose: () => void }
+interface CustomizeSheetProps {
+  item: MenuItem | null
+  onClose: () => void
+  onOrder: () => void
+}
 
-export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
-  const { addLine, lines } = useCart()
-  const { t, itemName, ingredientName, language } = useLanguage()
+export function CustomizeSheet({ item, onClose, onOrder }: CustomizeSheetProps) {
+  const { addLine } = useCart()
+  const { t, itemName, ingredientName } = useLanguage()
   const [bread, setBread] = useState<Ingredient | null>(null)
   const [selectedExtras, setSelectedExtras] = useState<MenuExtra[]>([])
   const [ingredientQty, setIngredientQty] = useState<Record<string, number>>({})
@@ -42,13 +45,8 @@ export function CustomizeSheet({ item, onClose }: CustomizeSheetProps) {
     onClose()
   }
   const handleOrder = () => {
-    const addedLine = addCurrentItem()
-    window.open(
-      buildWhatsAppUrl(buildOrderMessage([...lines, addedLine], '', 'a-emporter', language, '')),
-      '_blank',
-      'noopener,noreferrer',
-    )
-    onClose()
+    addCurrentItem()
+    onOrder()
   }
 
   return (

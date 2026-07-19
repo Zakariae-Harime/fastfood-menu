@@ -19,6 +19,7 @@ function MenuContent() {
   const { t, categoryName, isRtl } = useLanguage()
   const [activeCategory, setActiveCategory] = useState<MenuCategory>(MENU_CATEGORIES[0])
   const [customizing, setCustomizing] = useState<MenuItem | null>(null)
+  const [cartOpen, setCartOpen] = useState(false)
   const [query, setQuery] = useState('')
   const deferredQuery = useDeferredValue(query.trim().toLocaleLowerCase())
 
@@ -157,8 +158,15 @@ function MenuContent() {
         ) : null}
       </section>
 
-        <CustomizeSheet item={customizing} onClose={() => setCustomizing(null)} />
-        <CartDrawer />
+        <CustomizeSheet
+          item={customizing}
+          onClose={() => setCustomizing(null)}
+          onOrder={() => {
+            setCustomizing(null)
+            setCartOpen(true)
+          }}
+        />
+        <CartDrawer open={cartOpen} onOpenChange={setCartOpen} />
       </main>
     </>
   )

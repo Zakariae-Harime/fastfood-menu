@@ -7,11 +7,30 @@ import { formatPrice } from '@/lib/types'
 import { useMenu } from '@/lib/use-menu'
 
 const railClassName =
-  'scrollbar-none -mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-3 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0'
+  'scrollbar-none -mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-3 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4'
+
+const featuredDishes = [
+  {
+    id: 'frais-thon',
+    nameFr: 'Sandwich Thon',
+    image: 'https://i.pinimg.com/originals/eb/be/11/ebbe112c09ddd5379900887a40df1ba8.jpg',
+  },
+  {
+    id: 'tacos-poulet',
+    nameFr: 'Tacos Poulet',
+    image: 'https://images.unsplash.com/photo-1613319300745-88bc37cceccf?ixlib=rb-4.1.0&q=90&fm=jpg&crop=entropy&cs=srgb&w=1800',
+  },
+  { id: 'shawarma', nameFr: 'Shawarma Poulet', image: '/images/categories/Shawarma.png' },
+  { id: 'plat-tortilla', nameFr: 'Plat Tortilla', image: '/images/categories/Foure.png' },
+] as const
 
 export function SpecialtiesGrid() {
-  const { featured, isLoading } = useMenu()
-  const { itemName, ingredientName } = useLanguage()
+  const { items, isLoading } = useMenu()
+  const { language, itemName, ingredientName } = useLanguage()
+  const featured = featuredDishes.flatMap((dish) => {
+    const item = items.find((candidate) => candidate.id === dish.id)
+    return item ? [{ ...item, image: dish.image, featuredName: dish.nameFr }] : []
+  })
 
   if (isLoading) {
     return (
@@ -28,7 +47,7 @@ export function SpecialtiesGrid() {
   return (
     <div className={railClassName}>
       {featured.map((item, index) => {
-        const name = itemName(item)
+        const name = language === 'fr' ? item.featuredName : itemName(item)
         const description = item.included.map(ingredientName).join(' · ')
 
         return (

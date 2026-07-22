@@ -21,7 +21,7 @@ const featuredDishes = [
     image: 'https://images.unsplash.com/photo-1613319300745-88bc37cceccf?ixlib=rb-4.1.0&q=90&fm=jpg&crop=entropy&cs=srgb&w=1800',
   },
   { id: 'shawarma', nameFr: 'Shawarma Poulet', image: '/images/categories/Shawarma.png' },
-  { id: 'plat-tortilla', nameFr: 'Plat Tortilla', image: '/images/categories/Foure.png' },
+  { id: 'plat-tortilla', nameFr: 'Plat Tortilla', image: '/images/categories/PlatSpecial.png' },
 ] as const
 
 export function SpecialtiesGrid() {

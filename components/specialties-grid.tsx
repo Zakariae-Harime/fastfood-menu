@@ -7,7 +7,7 @@ import { formatPrice } from '@/lib/types'
 import { useMenu } from '@/lib/use-menu'
 
 const railClassName =
-  'scrollbar-none -mx-6 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-3 sm:mx-0 sm:mt-10 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4'
+  'mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4'
 
 const featuredDishes = [
   {
@@ -36,7 +36,7 @@ export function SpecialtiesGrid() {
     return (
       <div className={railClassName} aria-hidden="true">
         {[0, 1, 2].map((index) => (
-          <div key={index} className="h-72 shrink-0 basis-[84%] snap-start animate-pulse rounded-3xl bg-card sm:basis-auto" />
+          <div key={index} className="h-72 animate-pulse rounded-3xl bg-card" />
         ))}
       </div>
     )
@@ -54,7 +54,7 @@ export function SpecialtiesGrid() {
           <ScrollReveal
             key={item.id}
             delay={index * 120}
-            className="min-w-0 shrink-0 basis-[84%] snap-start sm:basis-auto"
+            className="min-w-0"
           >
             <article className="group h-full overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
               {item.image ? (

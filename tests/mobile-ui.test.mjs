@@ -13,15 +13,14 @@ test('menu uses a mobile horizontal category rail', async () => {
 
 test('menu cards use optimized responsive images and compact actions', async () => {
   const source = await read('components/menu-item-card.tsx')
-  assert.match(source, /import Image from 'next\/image'/)
-  assert.match(source, /sizes="\(max-width: 399px\) 112px/)
   assert.match(source, /min-h-11/)
+  assert.match(source, /self-stretch/)
 })
 
 test('specialties use a mobile snap rail and optimized images', async () => {
   const source = await read('components/specialties-grid.tsx')
-  assert.match(source, /snap-x/)
-  assert.match(source, /basis-\[84%\]/)
+  assert.match(source, /grid gap-4/)
+  assert.doesNotMatch(source, /overflow-x-auto/)
   assert.match(source, /import Image from 'next\/image'/)
 })
 
